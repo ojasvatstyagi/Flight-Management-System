@@ -10,7 +10,7 @@
     body {
         font-family: Arial, sans-serif;
         background-color: #f4f4f4;
-        background: url('https://wallpapers.com/images/featured/4k-plane-39efmsuz0fhub1c3.jpg') no-repeat center center fixed; 
+        background: url('https://images.unsplash.com/photo-1637593267482-9a9b86c0cabe?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed; 
         margin: 0;
         padding: 0;
         display: flex;

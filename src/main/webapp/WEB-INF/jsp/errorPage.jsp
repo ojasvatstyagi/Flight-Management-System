@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Login Error</title>
+    <title>Error</title>
     <style>
     body {
         font-family: Arial, sans-serif;
@@ -40,9 +40,9 @@
 </head>
 <body>
     <div class="container">
-        <h2>Login Error</h2>
+        <h2>Error!</h2>
         <p>${errorMessage}</p>
-        <a href="/loginpage">Back to Login</a>
+        <a href="/index">Back to home</a>
     </div>
 </body>
 </html>

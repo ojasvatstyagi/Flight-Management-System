@@ -49,11 +49,11 @@ public class LoginController {
         return mv;
     }
 
-    @GetMapping("/loginerror")
-    public ModelAndView showLoginErrorPage() {
-        ModelAndView mv = new ModelAndView("loginPage");
-        mv.addObject("error", "Invalid username or password.");
-        return mv;
-    }
-
+//    @GetMapping("/loginerror")
+//    public ModelAndView showLoginErrorPage() {
+//        ModelAndView mv = new ModelAndView("loginPage");
+//        mv.addObject("error", "Invalid username or password.");
+//        return mv;
+//    }
+    
 }
