@@ -1,6 +1,7 @@
 package com.nor.flightManagementSystem.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,11 +61,13 @@ public class AirportController {
         return mv;
     }
 
-    @PostMapping("/viewAirportCode")
+    @PostMapping("/details")
     public ModelAndView showSingleAirportPage(@RequestParam("airportCode") String id) {
         List<String> codeList = airportDao.findAllAirportCodes();
+        Optional<Airport> airportOpt = Optional.ofNullable(airportDao.findAirportById(id));
         ModelAndView mv = new ModelAndView("checkSingleAirport");
         mv.addObject("codeList", codeList);
+        airportOpt.ifPresent(airport -> mv.addObject("airport", airport));
         return mv;
     }
 
