@@ -39,12 +39,15 @@
             background-color: #f2f2f2;
         }
         .container a {
-            text-decoration: none;
-            color: #000;
+            color: #007bff;
+        	text-decoration: none;
             display: block;
             text-align: center;
             margin-top: 10px;
         }
+	    .container a:hover {
+	        text-decoration: underline;
+	    }
     </style>
 </head>
 <body>

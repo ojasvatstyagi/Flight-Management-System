@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Check Flight Details</title>
 <style>
+    /* Your existing CSS styles */
     body {
         font-family: Arial, sans-serif;
         background: url('https://cdn.pixabay.com/photo/2017/06/05/11/01/airport-2373727_1280.jpg') no-repeat center center fixed;
@@ -13,7 +14,7 @@
         margin: 0;
         padding: 0;
         background-color: #f4f4f4;
-        color: rgb(25, 40, 89);;
+        color: rgb(25, 40, 89);
     }
     .container {
         width: 70%;
@@ -82,50 +83,48 @@
     .flight button:hover {
         background-color: #c9302c;
     }
-    h3 {
-        text-align: center;
-        padding: 20px;
-        color: #999;
-    }
     a {
-            text-decoration: none;
-            color: #000;
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-        }
+        color: #007bff;
+    	text-decoration: none;
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+     }
+	 a:hover {
+        text-decoration: underline;
+	 }
 </style>
 </head>
 <body>
 
 <div class="container">
     <h1>Check Flight Details</h1>
-    <div class="form-group">
-        <label for="startPlace">Start Place:</label>
-        <input type="text" id="startPlace" name="startPlace">
-    </div>
-    <div class="form-group">
-        <label for="destination">Destination:</label>
-        <input type="text" id="destination" name="destination">
-    </div>
-    <div class="form-group">
-        <label for="dateOfFlight">Date of Flight:</label>
-        <div class="input-group">
-            <input type="date" id="dateOfFlight" name="dateOfFlight">
-            <button type="button">Search Flights</button>
+    <form action="/checkFlights" method="post">
+        <div class="form-group">
+            <label for="routeId">Enter Route Id:</label>
+            <input type="text" id="routeId" name="routeId" required>
         </div>
-    </div>
+        <div class="form-group">
+            <label for="timeOfFlight">Time of Departure:</label>
+            <div class="input-group">
+                <input type="time" id="timeOfFlight" name="timeOfFlight" required>
+                <button type="submit">Search Flights</button>
+            </div>
+        </div>
+    </form>
     <div class="available-flights">
         <h2>Available Flights</h2>
-        <div class="flight">
-            <p><strong>Flight ID:</strong> ${flight.flightNo}</p>
-            <p><strong>Flight Name:</strong> ${flight.carrierName}</p>
-        <!--<p><strong>Travel Duration:</strong> ${flight.duration}</p>
-            <p><strong>Price:</strong> ${flight.price}</p>-->  
-            <p><strong>Capacity:</strong> ${flight.seatCapacity}</p>
-            <button type="button">Book</button>
-        </div>
-        <h3>No flights available</h3>
+        <c:forEach var="flight" items="${flights}">
+            <div class="flight">
+                <p><strong>Flight ID:</strong> ${flight.flightNo}</p>
+                <p><strong>Flight Name:</strong> ${flight.carrierName}</p>
+                <p><strong>Arrival Time:</strong> ${flight.arrival}</p>
+                <p><strong>Departure Time:</strong> ${flight.departure}</p>
+                <p><strong>Route ID:</strong> ${flight.routeId}</p>
+                <p><strong>Capacity:</strong> ${flight.seatCapacity}</p>
+                <button type="button">Book</button>
+            </div>
+        </c:forEach>
         <a href="/index">Back to home</a>
     </div>
 </div>

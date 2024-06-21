@@ -94,9 +94,8 @@
     <h2>DashBoard</h2>
     <a href="/addAirport">Add Airport</a>
     <a href="/viewAirports">View All Airports</a>
-    <a href="/viewAirportCode">View Airport By Code</a>
     <a href="/addFlight">Add Flight Details</a>
-    <a href="/checkFlight">View Flight Details</a>
+    <a href="/checkFlights">View Flight Details</a>
     <a href="/route">Add New Route</a>
     <a href="/viewRoutes">View Routes</a>
     <a href="/viewBookings">View Bookings</a>

@@ -40,12 +40,15 @@
             background-color: #f2f2f2;
         }
         .container a {
-            text-decoration: none;
-            color: #000;
+            color: #007bff;
+        	text-decoration: none;
             display: block;
             text-align: center;
             margin-top: 10px;
         }
+	    .container a:hover {
+	        text-decoration: underline;
+	    }
     </style>
 </head>
 <body>
@@ -56,6 +59,7 @@
                 <tr>
                     <th>Airport Code</th>
                     <th>Airport Location</th>
+                    <th>Enquire</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,6 +67,7 @@
                     <tr>
                         <td>${airport.airportCode}</td>
                         <td>${airport.airportLocation}</td>
+                        <td><a href="/viewAirports/${airport.airportCode}">Enquire</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
