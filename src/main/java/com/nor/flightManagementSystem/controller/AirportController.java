@@ -100,7 +100,7 @@ public class AirportController {
     }
     
     @GetMapping("/checkFlights")
-    public ModelAndView showAllSchedules() {
+    public ModelAndView showAllFlights() {
         List<Flight> flights = flightDao.showAllFlights();
         ModelAndView mv = new ModelAndView("checkFlight");
         mv.addObject("flights", flights);
@@ -114,5 +114,14 @@ public class AirportController {
         mv.addObject("flights", flights);
         return mv;
     }
+    
+//    @GetMapping("/deleteAirport")
+//    public ModelAndView deleteAirport() {
+//        List<Flight> airports = flightDao.showAllFlights();
+//        ModelAndView mv = new ModelAndView("deleteAirport");
+//        mv.addObject("airports", airports);
+//        return mv;
+//    }
+//    
     
 }

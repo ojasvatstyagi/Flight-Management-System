@@ -18,3 +18,6 @@ public class FlightManagementSystemApplication {
 //show tables;
 //select * from airport;
 //desc flight;
+
+
+

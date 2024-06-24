@@ -9,7 +9,7 @@
 <style>
     body {
         font-family: Arial, sans-serif;
-        background: url('https://images.unsplash.com/photo-1547533456-07321515b4fd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed; 
+        background-image: url('/images/newUser.png') no-repeat center center fixed; 
         background-size: cover;
         margin: 0;
         padding: 0;
