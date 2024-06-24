@@ -10,5 +10,5 @@ public interface FlightDao {
 	public Flight viewFlight(Long flightNo);
 	public void modifyFlight(Flight flight);
 	public void removeFlight(Long flightNo);
-	List<Flight> findFlightsByRouteIdAndDepartureTime(Long routeId, String timeOfFlight);
+	public List<Flight> findFlightsByRouteIdAndDepartureTime(Long routeId, String timeOfFlight);
 }
