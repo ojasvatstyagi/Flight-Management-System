@@ -28,14 +28,21 @@ public class RouteDaoImpl implements RouteDao {
         return repo.findById(id).get();
     }
 
-    @Override
-    public Long findRouteBySourceAndDestination(String source, String destination) {
-        return repo.findRouteBySourceAndDestination(source, destination);
-    }
-
+    
     @Override
     public Long generateRouteId() {
         Long val = repo.findLastRouteId();
         return (val == null) ? 101L : val + 1;
     }
+
+	@Override
+	public List<Long> findAllRoutesId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Route findRouteBySourceAndDestination(String source, String destination) {
+		return repo.findRouteBySourceAndDestination(source, destination);
+	}
 }

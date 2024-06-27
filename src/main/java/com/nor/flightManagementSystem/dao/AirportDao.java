@@ -13,5 +13,5 @@ public interface AirportDao {
     public List<String> findAllAirportCodes();
 	public String findAirportCodeByLocation(String sourceAirportCode);
 	public Airport modifyAirport(Airport airport);
-	public String removeAirport(String airportCode);
+	public void deleteAirportByCode(String airportCode);
     }

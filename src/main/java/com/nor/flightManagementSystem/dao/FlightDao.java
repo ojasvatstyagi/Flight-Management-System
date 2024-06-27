@@ -10,7 +10,7 @@ public interface FlightDao {
 	public ResponseEntity<Flight> addFlight(Flight flight);
 	public List<Flight> showAllFlights();
 	public Flight viewFlight(Long flightNo);
-	public Flight modifyFlight(Flight flight);
 	public String removeFlight(Long flightNo);
-	public List<Flight> findFlightsByRouteIdAndDepartureTime(Long routeId, String timeOfFlight);
+	public void updateFlight(Flight flight);
+	public List<Flight> findFlightsByRouteId(Long routeId);
 }

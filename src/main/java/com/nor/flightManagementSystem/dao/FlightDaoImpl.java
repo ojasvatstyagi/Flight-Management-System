@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,13 +55,12 @@ public class FlightDaoImpl implements FlightDao{
 	    }
 	
     @Override
-	public Flight modifyFlight(Flight flight) {
+	public void updateFlight(Flight flight) {
 		Optional<Flight> findById = flightRepository.findById(flight.getFlightNo());
 		if (findById.isPresent()) {
 			flightRepository.save(flight);
 		} else
 			throw new RecordNotFoundException("Flight with number: " + flight.getFlightNo() + " not exists");
-		return flight;
 	}
 
     public String removeFlight(Long flightNo) {
@@ -76,11 +74,8 @@ public class FlightDaoImpl implements FlightDao{
 	}
 
 	@Override
-    public List<Flight> findFlightsByRouteIdAndDepartureTime(Long routeId, String timeOfFlight) {
-        String queryStr = "SELECT f FROM Flight f WHERE f.routeId = :routeId AND f.departure LIKE :timeOfFlight%";
-        TypedQuery<Flight> query = entityManager.createQuery(queryStr, Flight.class);
-        query.setParameter("routeId", routeId);
-        query.setParameter("timeOfFlight", timeOfFlight + "%"); // Using wildcard for partial match
-        return query.getResultList();
-    }
+	public List<Flight> findFlightsByRouteId(Long routeId) {
+		return flightRepository.findFlightsByRouteId(routeId);
+	}
+
 }

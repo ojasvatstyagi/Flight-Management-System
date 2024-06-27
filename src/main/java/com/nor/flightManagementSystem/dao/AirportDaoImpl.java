@@ -73,13 +73,7 @@ public class AirportDaoImpl implements AirportDao {
 	}
 
 	@Override
-	public String removeAirport(String airportCode) {
-		Optional<Airport> findById = repository.findById(airportCode);
-		if (findById.isPresent()) {
-			repository.deleteById(airportCode);
-			return "Airport removed";
-		} else
-			throw new RecordNotFoundException("Airport with code: " + airportCode + " not exists");
-
+	public void deleteAirportByCode(String airportCode) {
+		repository.deleteById(airportCode);		
 	}
 }

@@ -41,8 +41,8 @@
 <body>
     <div class="container">
         <h2>Error!</h2>
-        <p>${errorMessage}</p>
-        <a href="/index">Back to home</a>
+        <p>${message}</p>
+        <a href="/checkFlights">Back</a>
     </div>
 </body>
 </html>

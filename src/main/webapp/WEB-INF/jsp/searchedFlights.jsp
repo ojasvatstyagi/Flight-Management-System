@@ -3,8 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Check Flight Details</title>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -97,25 +98,27 @@
         text-decoration: underline;
 	 }
 </style>
+
 </head>
 <body>
-
 <div class="container">
-    <h1>Check Flight Details</h1>
-    <form action="/checkFlights" method="post">
-        <div class="form-group">
-            <label for="sourceAirportCode">Enter Source Airport Code:</label>
-            <input type="text" id="sourceAirportCode" name="sourceAirportCode" required>
-        </div>
-        <div class="form-group">
-            <label for="destinationAirportCode">Enter Destination Airport Code:</label>
-            <input type="text" id="destinationAirportCode" name="destinationAirportCode" required>
-        </div>
-        <div class="form-group input-group">
-            <button type="submit">Search Flights</button>
-        </div>
-    </form>
+	<div class="available-flights">
+        <h2>Available Flights</h2>
+        <c:forEach var="flight" items="${flights}">
+            <div class="flight">
+                <div class="flight-details">
+                    <p><strong>Flight ID:</strong> ${flight.flightNo}</p>
+                    <p><strong>Flight Name:</strong> ${flight.carrierName}</p>
+                    <p><strong>Arrival Time:</strong> ${flight.arrival}</p>
+                    <p><strong>Departure Time:</strong> ${flight.departure}</p>
+                    <p><strong>Route ID:</strong> ${flight.routeId}</p>
+                    <p><strong>Capacity:</strong> ${flight.seatCapacity}</p>
+                </div>
+                <button type="button">Book</button>
+            </div>
+        </c:forEach>
+        <a href="/checkFlights">Back to home</a>
+    </div>
 </div>
-
 </body>
 </html>

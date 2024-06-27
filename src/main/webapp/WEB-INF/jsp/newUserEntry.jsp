@@ -9,8 +9,6 @@
 <style>
     body {
         font-family: Arial, sans-serif;
-        background-image: url('/images/newUser.png') no-repeat center center fixed; 
-        background-size: cover;
         margin: 0;
         padding: 0;
         display: flex;
@@ -108,8 +106,8 @@
             <form:label path="username">Enter New User Id:</form:label>
             <form:input path="username" />
             <br/>
-            <form:label path="type">Select User's Type:</form:label>
-            <select path="type" name="type">
+            <form:label for ="type" path="type">Select User's Type:</form:label>
+            <select id = "type" name="type">
                 <option value="Customer">Customer</option>
                 <option value="Admin">Admin</option>
             </select>

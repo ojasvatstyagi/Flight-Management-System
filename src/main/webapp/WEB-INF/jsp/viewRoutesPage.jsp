@@ -59,6 +59,7 @@
                     <th>Route Id</th>
                     <th>Start Airport</th>
                     <th>Destination Airport</th>
+                    <th>Route Fair</th>
                 </tr>
             </thead>
             <tbody>
@@ -67,6 +68,7 @@
                         <td>${route.routeId}</td>
                         <td>${route.sourceAirportCode}</td>
                         <td>${route.destinationAirportCode}</td>
+                        <td>${route.fair}</td>
                     </tr>
                 </c:forEach>
             </tbody>

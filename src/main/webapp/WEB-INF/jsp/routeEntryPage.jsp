@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,6 +45,14 @@
             box-sizing: border-box;
             width: calc(100% - 22px);
         }
+        .container input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            width: calc(100% - 22px);
+        }
         .container button {
             background-color: #4CAF50;
             color: white;
@@ -57,12 +67,12 @@
             background-color: #45a049;
         }
         .container a {
-            text-decoration: none;
-            color: #000;
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-        }
+        color: #007bff;
+        text-decoration: none;
+	    }
+	     .container a:hover {
+	        text-decoration: underline;
+	    }
     </style>
 </head>
 <body>
@@ -87,6 +97,10 @@
                         <option value="${airport.airportCode}">${airport.airportCode}</option>
                     </c:forEach>
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="sourceAirportCode">Enter Route Fair:</label>
+                <input type="text" id="routeFair" name="fair" placeholder="xxxx" required>
             </div>
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">Submit</button>

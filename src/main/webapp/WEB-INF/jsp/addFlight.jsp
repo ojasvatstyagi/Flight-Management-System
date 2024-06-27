@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden; /* Prevents the body from scrolling */
         }
         .container {
             background-color: rgba(255, 255, 255, 0.6);
@@ -25,11 +27,11 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 80%;
             max-width: 800px;
+            max-height: 90vh; /* Limits the height of the container */
+            overflow-y: auto; /* Adds a scrollbar if content overflows */
             text-align: center;
         }
         .header {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
         }
@@ -37,7 +39,11 @@
             margin: 0;
             color: rgb(17 23 43);
         }
-        .header .logout {
+        .back {
+            display: flex;
+            justify-content: space-between;
+        }
+        .back .logout {
             font-size: 16px;
             color: #fff;
             background-color: rgb(224 25 51);
@@ -48,31 +54,23 @@
             text-decoration: none;
         }
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: left;
         }
         .form-group label {
-            font-size: 20px;
+            font-size: 16px;
             display: block;
             margin-bottom: 5px;
             color: rgb(17 23 43);
         }
-        .form-group input {
+        .form-group input, .form-group select {
             width: 100%;
             padding: 10px;
-            font-size: 16px;
+            font-size: 14px;
             border: 1px solid rgb(17 23 43);
             border-radius: 5px;
             box-sizing: border-box;
         }
-        
-        .form-control {
-		    width: 100%;
-		    padding: 8px;
-		    box-sizing: border-box;
-		    border: 1px solid #ced4da;
-		    border-radius: 4px;
-		}
         .form-group button {
             padding: 10px 20px;
             font-size: 16px;
@@ -87,7 +85,7 @@
         }
         footer {
             margin-top: 20px;
-            font-size: 16px;
+            font-size: 14px;
         }
         a {
             color: rgb(17 23 43);
@@ -102,42 +100,52 @@
     <div class="container">
         <div class="header">
             <h1>New Flight Registry</h1>
-            <a href="/index" class="logout">HOME</a>
         </div>
         <form action="/addFlight" method="post">
-	    <div class="form-group">
-	        <label for="flightNo">Flight Id:</label>
-	        <input type="text" id="flightNo" name="flightNo" placeholder="xxxx" required>
-	    </div>
-	    <div class="form-group">
-	        <label for="carrierName">Carrier Name:</label>
-	        <input type="text" id="carrierName" name="carrierName" placeholder="xxxx" required>
-	    </div>
-	    <div class="form-group">
-	        <label for="seatCapacity">Seat Capacity:</label>
-	        <input type="text" id="seatCapacity" name="seatCapacity" placeholder="xxxx" required>
-	    </div>
-	    <div class="form-group">
-	        <label for="routeId">Select Route ID:</label>
-	        <select id="routeId" name="routeId" class="form-control" required>
-	            <option value="" disabled selected>Select Route Code</option>
-	            <c:forEach var="route" items="${codeList}">
-	                <option value="${route.routeId}">${route.routeId}</option>
-	            </c:forEach>
-	        </select>
-	    </div>
-	    <div class="form-group">
-	        <label for="arrival">Enter Arrival Time:</label>
-	        <input type="time" id="arrival" name="arrival" placeholder="xxxx" required>
-	    </div>
-	    <div class="form-group">
-	        <label for="departure">Enter Departure Time:</label>
-	        <input type="time" id="departure" name="departure" placeholder="xxxx" required>
-	    </div>
-	    <div class="form-group">
-	        <button type="submit">ADD</button>
-	    </div>
-	</form>
+            <div class="form-group">
+                <label for="flightNo">Flight Id:</label>
+                <input type="text" id="flightNo" name="flightNo" placeholder="xxxx" required>
+            </div>
+            <div class="form-group">
+                <label for="carrierName">Carrier Name:</label>
+                <input type="text" id="carrierName" name="carrierName" placeholder="xxxx" required>
+            </div>
+            <div class="form-group">
+                <label for="seatCapacity">Seat Capacity:</label>
+                <input type="text" id="seatCapacity" name="seatCapacity" placeholder="xxxx" required>
+            </div>
+            <div class="form-group">
+                <label for="routeId">Select Route ID:</label>
+                <select id="routeId" name="routeId" class="form-control" required>
+                    <option value="" disabled selected>Select Route Code</option>
+                    <c:forEach var="route" items="${codeList}">
+                        <option value="${route.routeId}">${route.routeId} => ${route.sourceAirportCode} to ${route.destinationAirportCode}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="arrival">Enter Arrival Time:</label>
+                <input type="time" id="arrival" name="arrival" required>
+            </div>
+            <div class="form-group">
+                <label for="departure">Enter Departure Time:</label>
+                <input type="time" id="departure" name="departure" required>
+            </div>
+            <div class="form-group">
+                <label for="returnArrival">Enter Return Arrival Time:</label>
+                <input type="time" id="returnArrival" name="returnArrival" required>
+            </div>
+            <div class="form-group">
+                <label for="returnDeparture">Enter Return Departure Time:</label>
+                <input type="time" id="returnDeparture" name="returnDeparture" required>
+            </div>
+            <div class="form-group">
+                <div class="back">
+                    <button type="submit">ADD</button>
+                    <a href="/index" class="logout">HOME</a>
+                </div>
+            </div>
+        </form>
         <footer>
             Flight Reservation System 2024 | <a href="/aboutUs">About Us</a>
         </footer>

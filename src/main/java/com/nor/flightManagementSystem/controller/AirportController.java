@@ -3,6 +3,7 @@ package com.nor.flightManagementSystem.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,9 @@ import com.nor.flightManagementSystem.bean.Route;
 import com.nor.flightManagementSystem.dao.AirportDao;
 import com.nor.flightManagementSystem.dao.FlightDao;
 import com.nor.flightManagementSystem.dao.RouteDao;
+import com.nor.flightManagementSystem.service.FlightService;
 
+@ControllerAdvice
 @RestController
 public class AirportController {
 
@@ -29,6 +32,9 @@ public class AirportController {
     
     @Autowired
 	private RouteDao routeDao;
+    
+    @Autowired
+    private FlightService flightService;
     
     @GetMapping("/index")
     public ModelAndView showIndexPage() {
@@ -74,16 +80,6 @@ public class AirportController {
         return mv;
     }
 
-//    @PostMapping("/details")
-//    public ModelAndView showSingleAirportPage(@RequestParam("airportCode") String id) {
-//        List<String> codeList = airportDao.findAllAirportCodes();
-//        Optional<Airport> airportOpt = Optional.ofNullable(airportDao.findAirportById(id));
-//        ModelAndView mv = new ModelAndView("checkSingleAirport");
-//        mv.addObject("codeList", codeList);
-//        airportOpt.ifPresent(airport -> mv.addObject("airport", airport));
-//        return mv;
-//    }
-
     @GetMapping("/addFlight")
     public ModelAndView showAddNewFlightPage() {
     	List<Route> routes = routeDao.findAllRoutes();
@@ -94,8 +90,10 @@ public class AirportController {
     }
 
     @PostMapping("/addFlight")
-    public ModelAndView saveFlight(@ModelAttribute("flightRecord") Flight flight) {
+    public ModelAndView saveFlight(@ModelAttribute("flightRecord") Flight flight, String returnDeparture, String returnArrival) {
+    	Flight returnFlight = flightService.createReturnFlight(flight, returnDeparture, returnArrival);
     	flightDao.addFlight(flight);
+    	flightDao.addFlight(returnFlight);
         return new ModelAndView("index");
     }
     
@@ -106,22 +104,89 @@ public class AirportController {
         mv.addObject("flights", flights);
         return mv;
     }
+ 
     
     @PostMapping("/checkFlights")
-    public ModelAndView checkFlights(@RequestParam("routeId") Long routeId, @RequestParam("timeOfFlight") String timeOfFlight) {
-        List<Flight> flights = flightDao.findFlightsByRouteIdAndDepartureTime(routeId, timeOfFlight);
-        ModelAndView mv = new ModelAndView("checkFlight");
+    public ModelAndView checkFlights(@RequestParam("sourceAirportCode") String sourceAirportCode, @RequestParam("destinationAirportCode") String destinationAirportCode) {
+        String fromAirport = airportDao.findAirportCodeByLocation(sourceAirportCode);
+        String toAirport = airportDao.findAirportCodeByLocation(destinationAirportCode);
+        
+        // Check if either airport code is null
+        if (fromAirport == null || toAirport == null) {
+            ModelAndView mv = new ModelAndView("routeErrorPage");
+            mv.addObject("message", "Invalid source or destination airport code.");
+            return mv;
+        }
+
+        // Check if the source and destination airport codes are the same
+        if (fromAirport.equalsIgnoreCase(toAirport)) {
+            ModelAndView mv = new ModelAndView("routeErrorPage");
+            mv.addObject("message", "Source and destination airport codes cannot be the same.");
+            return mv;
+        }
+
+        Route route = routeDao.findRouteBySourceAndDestination(fromAirport, toAirport);
+
+        // Check if the route exists
+        if (route == null) {
+            ModelAndView mv = new ModelAndView("routeErrorPage");
+            mv.addObject("message", "No route found between the specified airports.");
+            return mv;
+        }
+
+        List<Flight> flights = flightDao.findFlightsByRouteId(route.getRouteId());
+
+        ModelAndView mv = new ModelAndView("searchedFlights");
+        mv.addObject("flights", flights);
+        mv.addObject("fromAirport", fromAirport);
+        mv.addObject("toAirport", toAirport);
+        mv.addObject("fair", route.getFair());
+        return mv;
+    }
+
+    
+//    @ExceptionHandler(value = RouteException.class)
+//    public ModelAndView handlingRouteException(RouteException exception) {
+//    	ModelAndView mv = new ModelAndView("routeErrorPage");
+//    	mv.addObject("error", "Arrival And Destinationn Airports can't be same");
+//    	return mv;
+//    }
+
+    
+    @GetMapping("/modifyAirport")
+    public ModelAndView deleteAirport() {
+        List<Airport> airports = airportDao.findAllAirports();
+        ModelAndView mv = new ModelAndView("modifyAirport");
+        mv.addObject("airports", airports);
+        return mv;
+    }
+    
+    
+    @GetMapping("/modifyFlight")
+    public ModelAndView deleteFlight() {
+        List<Flight> flights = flightDao.showAllFlights();
+        ModelAndView mv = new ModelAndView("modifyFlight");
         mv.addObject("flights", flights);
         return mv;
     }
     
-//    @GetMapping("/deleteAirport")
-//    public ModelAndView deleteAirport() {
-//        List<Flight> airports = flightDao.showAllFlights();
-//        ModelAndView mv = new ModelAndView("deleteAirport");
-//        mv.addObject("airports", airports);
-//        return mv;
-//    }
-//    
+    @PostMapping("/deleteAirport")
+    public ModelAndView deleteAirport(@RequestParam("airportCode") String airportCode) {
+    	airportDao.deleteAirportByCode(airportCode);
+        return new ModelAndView("index"); 
+    }
+    
+    @PostMapping("/updateFlight")
+    public ModelAndView updateFlight(@RequestParam("flightNo") Long flightNo,
+                               @RequestParam("carrierName") String carrierName,
+                               @RequestParam("arrival") String arrival,
+                               @RequestParam("departure") String departure,
+                               @RequestParam("routeId") Long routeId,
+                               @RequestParam("seatCapacity") Integer seatCapacity) {
+        Flight flight = new Flight(flightNo, carrierName, routeId, seatCapacity, departure, arrival);
+        flightDao.updateFlight(flight);
+        return new ModelAndView("index");
+    }
+
     
 }
