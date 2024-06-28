@@ -51,19 +51,19 @@
         width: 200px;
         height: 100vh;
         position: fixed;
-        padding-top: 70px;
+        padding-top: 60px;
         border: 4px solid rgb(25, 40, 89);
     }
     .nav h2 {
         text-align: center;
         font-size: 1.5em;
-        margin: 10px;
+        margin: 5px 10px;
     }
     .nav a {
         display: block;
         color: white;
         text-decoration: none;
-        padding: 15px 20px;
+        padding: 15px 15px;
         font-size: 18px;
     }
     .nav a:hover {

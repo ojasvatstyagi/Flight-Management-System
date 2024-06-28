@@ -9,6 +9,8 @@
 <style>
     body {
         font-family: Arial, sans-serif;
+        background: url('./../../../resources/static/images/addAirport.jpg') no-repeat center center fixed;
+        background-size: cover; 
         margin: 0;
         padding: 0;
         display: flex;
