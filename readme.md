@@ -68,6 +68,6 @@ Follow these steps to set up the project locally:
 - **Admin Access:** Admin-specific functionalities can be accessed after logging in as an admin.
 
 ## Project Structure
-![Flight Management System Structure ](StructurePart1png)
+![Flight Management System Structure ](StructurePart1.png)
 ![Flight Management System Structure ](StructurePart2.png)
 
