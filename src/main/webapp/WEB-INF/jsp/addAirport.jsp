@@ -9,6 +9,8 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
+            background: url('/images/addAirport.jpg') no-repeat center center fixed;
+       		background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,7 +18,7 @@
             margin: 0;
         }
         .container {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -57,12 +59,15 @@
             background-color: #45a049;
         }
         .container a {
-            text-decoration: none;
-            color: #000;
+            color: #007bff;
+        	text-decoration: none;
             display: block;
             text-align: center;
             margin-top: 10px;
         }
+	    .container a:hover {
+	        text-decoration: underline;
+	    }
     </style>
 </head>
 <body>

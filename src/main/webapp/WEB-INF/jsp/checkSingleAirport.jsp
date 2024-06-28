@@ -9,6 +9,8 @@
 		body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
+            background: url('/images/checkSAirport.jpg') no-repeat center center fixed;
+       		background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,7 +18,7 @@
             margin: 0;
         }
         .container {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

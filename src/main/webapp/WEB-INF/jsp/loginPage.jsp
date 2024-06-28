@@ -10,7 +10,8 @@
     body {
         font-family: Arial, sans-serif;
         background-color: #f4f4f4;
-        background: url('https://images.unsplash.com/photo-1637593267482-9a9b86c0cabe?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed; 
+        background: url('/images/login.jpg') no-repeat center center fixed;
+        background-size: cover; 
         margin: 0;
         padding: 0;
         display: flex;
@@ -20,7 +21,7 @@
     }
     .container {
         text-align: center;
-        background-color: rgba(255, 255, 255, 0.6);
+        background-color: rgba(255, 255, 255, 0.8);
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

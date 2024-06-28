@@ -5,12 +5,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Delete Airport</title>
+    <title>Delete Airport and Update Airport</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: url('https://cdn.pixabay.com/photo/2017/06/05/11/01/airport-2373727_1280.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background: url('/images/modifyAirport.jpg') no-repeat center center fixed;
+       		background-size: cover;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
@@ -20,7 +20,7 @@
             width: 50%;
             margin: 100px auto;
             border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.6);
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -79,6 +79,23 @@
             </div>
             <div class="form-actions">
                 <button type="submit">Delete Airport</button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="container">
+        <h2>Update Airport Details</h2>
+        <form action="/updateAirport" method="post">
+            <div class="form-group">
+                <label for="airportCode">Enter Airport Code:</label>
+                <input type="text" id="airportCode" name="airportCode" required>
+            </div>
+            <div class="form-group">
+                <label for="airportLocation">Enter Airport Location:</label>
+                <input type="text" id="airportLocation" name="airportLocation" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit">Update Airport</button>
             </div>
         </form>
         <a href="/index">Back to home</a>

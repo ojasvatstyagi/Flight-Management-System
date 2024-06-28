@@ -25,10 +25,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder authority) throws Exception {
 			authority.userDetailsService(service).passwordEncoder(config.passwordEncoder());
 	}
+	
 	@Override
 	public void configure(HttpSecurity http) throws Exception{
 	http.authorizeHttpRequests()
-			.antMatchers("/register")
+			.antMatchers("/register", "/images/**", "/css/**", "/js/**", "/betaAirline")
 			.permitAll()
 			.anyRequest()
 			.authenticated()

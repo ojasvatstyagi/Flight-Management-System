@@ -10,7 +10,7 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            background: url('https://cdn.pixabay.com/photo/2017/06/05/11/01/airport-2373727_1280.jpg') no-repeat center center fixed;
+            background: url('/images/addFlight.jpg') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -21,7 +21,7 @@
             overflow: hidden; /* Prevents the body from scrolling */
         }
         .container {
-            background-color: rgba(255, 255, 255, 0.6);
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

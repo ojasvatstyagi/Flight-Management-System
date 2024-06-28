@@ -73,7 +73,7 @@
         margin-left: 200px;
         padding: 120px 20px 20px 20px; /* Padding adjusted for fixed header */
         height: 81vh;
-        background-image: url('https://images.unsplash.com/photo-1547533456-07321515b4fd?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-image: url('/images/index.jpg');
         background-size: cover;
     }
 </style>
@@ -82,7 +82,7 @@
 
 <div class="header">
     <div>
-        <img src="https://as1.ftcdn.net/v2/jpg/01/06/50/36/1000_F_106503655_1pCoZ43RbhMJ7jaJAZ4IpMLFeSHnrTzj.jpg" alt="Delta Airlines Logo">
+        <img src="/images/logo.png" alt="Delta Airlines Logo">
     </div>
     <h1>BETA AIRLINES</h1>
     <div class="user">
@@ -103,7 +103,7 @@
     <a href="/viewBookings">View Bookings</a>
     <a href="/bookFlight">Book Flight</a>
     <a href="/aboutUs">About Us</a>
-    <a href="/logout">Logout</a>
+    <a href="/betaAirline">Logout</a>
 </div>
 
 <div class="content">

@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: url('https://cdn.pixabay.com/photo/2017/06/05/11/01/airport-2373727_1280.jpg') no-repeat center center fixed;
+            background: url('/images/modifyFlight.jpg') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -20,7 +20,7 @@
             width: 50%;
             margin: 100px auto;
             border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.6);
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -75,6 +75,19 @@
     </style>
 </head>
 <body>
+	<div class="container">
+        <h1>Delete Flight</h1>
+        <form action="/deleteFlight" method="post">
+            <div class="form-group">
+                <label for="flightNo">Enter Flight Id:</label>
+                <input type="text" id="flightNo" name="flightNo" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit">Delete Flight</button>
+            </div>
+        </form>
+    </div>
+    
     <div class="container">
         <h2>Update Flight Details</h2>
         <form action="/updateFlight" method="post">
