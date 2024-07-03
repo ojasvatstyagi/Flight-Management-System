@@ -100,8 +100,8 @@
     <a href="/modifyFlight">Modify Flight Details</a>
     <a href="/route">Add New Route</a>
     <a href="/viewRoutes">View Routes</a>
-    <a href="/viewBookings">View Bookings</a>
     <a href="/bookFlight">Book Flight</a>
+    <a href="/viewBooking">View Bookings</a>
     <a href="/aboutUs">About Us</a>
     <a href="/betaAirline">Logout</a>
 </div>

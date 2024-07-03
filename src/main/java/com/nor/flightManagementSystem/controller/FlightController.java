@@ -97,6 +97,15 @@ public class FlightController {
         mv.addObject("fair", route.getFair());
         return mv;
     }
+        
+    
+//  @ExceptionHandler(value = RouteException.class)
+//  public ModelAndView handlingRouteException(RouteException exception) {
+//  	ModelAndView mv = new ModelAndView("routeErrorPage");
+//  	mv.addObject("error", "Arrival And Destinationn Airports can't be same");
+//  	return mv;
+//  }
+
     
     @GetMapping("/modifyFlight")
     public ModelAndView deleteFlight() {

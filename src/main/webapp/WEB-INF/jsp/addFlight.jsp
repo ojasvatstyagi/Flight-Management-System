@@ -144,6 +144,7 @@
                     <button type="submit">ADD</button>
                     <a href="/index" class="logout">HOME</a>
                 </div>
+                <input type="hidden" name="seatBooked" value="0" />
             </div>
         </form>
         <footer>

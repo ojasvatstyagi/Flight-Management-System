@@ -10,7 +10,6 @@ public class FlightManagementSystemApplication {
     }
 }
 
-
  
 //mysql -u root -p     
 //ojas123@mysql
@@ -18,6 +17,3 @@ public class FlightManagementSystemApplication {
 //show tables;
 //select * from airport;
 //desc flight;
-
-
-

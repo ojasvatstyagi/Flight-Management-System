@@ -71,16 +71,7 @@ public class AirportController {
         return mv;
     }
 
-    
-    
-//    @ExceptionHandler(value = RouteException.class)
-//    public ModelAndView handlingRouteException(RouteException exception) {
-//    	ModelAndView mv = new ModelAndView("routeErrorPage");
-//    	mv.addObject("error", "Arrival And Destinationn Airports can't be same");
-//    	return mv;
-//    }
 
-    
     @GetMapping("/modifyAirport")
     public ModelAndView deleteAirport() {
         List<Airport> airports = airportDao.findAllAirports();
