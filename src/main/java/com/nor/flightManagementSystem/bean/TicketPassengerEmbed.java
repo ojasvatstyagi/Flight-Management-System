@@ -13,6 +13,7 @@ public class TicketPassengerEmbed implements Serializable{
 	private Long ticketNumber;
 	@NotNull
 	private Integer serialNumber;
+	
 	public Long getTicketNumber() {
 		return ticketNumber;
 	}

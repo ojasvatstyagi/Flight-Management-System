@@ -80,7 +80,7 @@
 <body>
     <div class="container">
         <h2>Add Route</h2>
-        <form action="${pageContext.request.contextPath}/route" method="post">
+        <form action="/route" method="post">
             <input type="hidden" name="routeId" value="${routeRecord.routeId}" />
             <div class="form-group">
                 <label for="sourceAirportCode">Select Source Airport Code:</label>
@@ -101,8 +101,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="sourceAirportCode">Enter Route Fair:</label>
-                <input type="text" id="routeFair" name="fair" placeholder="xxxx" required>
+                <label for="price">Enter Route Price:</label>
+                <input type="text" id="price" name="price" placeholder="xxxx" required>
             </div>
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">Submit</button>

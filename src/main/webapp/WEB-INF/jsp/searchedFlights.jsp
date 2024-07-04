@@ -102,22 +102,29 @@
 </head>
 <body>
 <div class="container">
-	<div class="available-flights">
+    <div class="available-flights">
         <h2>Available Flights</h2>
         <c:forEach var="flight" items="${flights}">
             <div class="flight">
                 <div class="flight-details">
-                    <p><strong>Flight ID:</strong> ${flight.flightNo}</p>
-                    <p><strong>Flight Name:</strong> ${flight.carrierName}</p>
+                    <p><strong>Flight ID:</strong> ${flight.flightNumber}</p>
+                    <p><strong>Flight Name:</strong> ${flight.flightName}</p>
                     <p><strong>Arrival Time:</strong> ${flight.arrival}</p>
                     <p><strong>Departure Time:</strong> ${flight.departure}</p>
                     <p><strong>Route ID:</strong> ${flight.routeId}</p>
-                    <p><strong>Capacity:</strong> ${flight.seatCapacity}</p>
+                    <p><strong>Available Seats:</strong> ${flight.seatCapacity - flight.seatsBooked}</p>
+                    <p><strong>Price:</strong> ${price}</p>
                 </div>
-                <button type="button">Book</button>
+                <form action="/bookFlight" method="get">
+                    <input type="hidden" name="flightNumber" value="${flight.flightNumber}">
+                    <input type="hidden" name="flightName" value="${flight.flightName}">
+                    <input type="hidden" name="routeId" value="${flight.routeId}">
+                    <input type="hidden" name="price" value="${price}">
+                    <button type="submit">Book</button>
+                </form>
             </div>
         </c:forEach>
-        <a href="/checkFlights">Back to home</a>
+        <a href="/searchFlight">Back to search</a>
     </div>
 </div>
 </body>

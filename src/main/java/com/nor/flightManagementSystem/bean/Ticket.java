@@ -9,19 +9,19 @@ public class Ticket {
 	private Long ticketNumber;
 	private Long routeId;
 	private Long flightNumber;
-	private String carrierName;
+	private String flightName;
 	private Double totalAmount;
 	
 	public Ticket() {
 		super();
 	}
 	
-	public Ticket(Long ticketNumber, Long routeId, Long flightNumber, String carrierName, Double totalAmount) {
+	public Ticket(Long ticketNumber, Long routeId, Long flightNumber, String flightName, Double totalAmount) {
 		super();
 		this.ticketNumber = ticketNumber;
 		this.routeId = routeId;
 		this.flightNumber = flightNumber;
-		this.carrierName = carrierName;
+		this.flightName = flightName;
 		this.totalAmount = totalAmount;
 	}
 	public Long getTicketNumber() {
@@ -42,11 +42,11 @@ public class Ticket {
 	public void setFlightNumber(Long flightNumber) {
 		this.flightNumber = flightNumber;
 	}
-	public String getCarrierName() {
-		return carrierName;
+	public String getFlightName() {
+		return flightName;
 	}
-	public void setCarrierName(String carrierName) {
-		this.carrierName = carrierName;
+	public void setFlightName(String flightName) {
+		this.flightName = flightName;
 	}
 	public Double getTotalAmount() {
 		return totalAmount;
@@ -54,5 +54,5 @@ public class Ticket {
 	public void setTotalAmount(Double totalAmount) {
 		this.totalAmount = totalAmount;
 	}
-	
+
 }

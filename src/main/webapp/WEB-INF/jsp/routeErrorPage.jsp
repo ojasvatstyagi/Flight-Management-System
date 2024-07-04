@@ -44,7 +44,7 @@
     <div class="container">
         <h2>Error!</h2>
         <p>${message}</p>
-        <a href="/checkFlights">Back</a>
+        <a href="/searchFlight">Back</a>
     </div>
 </body>
 </html>

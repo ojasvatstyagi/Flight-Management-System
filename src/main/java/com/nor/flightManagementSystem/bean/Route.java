@@ -19,8 +19,8 @@ public class Route {
     @Column(name = "destination_airport_code", nullable = false)
     private String destinationAirportCode;
     
-    @Column(name = "fair")
-    private Double fair;
+    @Column(name = "price")
+    private Double price;
 	
 	public Long getRouteId() {
 		return routeId;
@@ -41,18 +41,18 @@ public class Route {
 		this.destinationAirportCode = destinationAirportCode;
 	}
 	
-	public Double getFair() {
-		return fair;
+	public Double getPrice() {
+		return price;
 	}
-	public void setFair(Double fair) {
-		this.fair = fair;
+	public void setPrice(Double price) {
+		this.price = price;
 	}
-	public Route(Long routeId, String sourceAirportCode, String destinationAirportCode, Double fair) {
+	public Route(Long routeId, String sourceAirportCode, String destinationAirportCode, Double price) {
 		super();
 		this.routeId = routeId;
 		this.sourceAirportCode = sourceAirportCode;
 		this.destinationAirportCode = destinationAirportCode;
-		this.fair = fair;
+		this.price = price;
 	}
 	public Route() {
 		super();

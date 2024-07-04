@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Check Flight Details</title>
+<title>Search Flight Details</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -36,7 +36,7 @@
         color: rgb(25, 40, 89);
         font-size: 20px;
     }
-    .form-group input {
+    .form-control {
         width: 100%;
         padding: 8px;
         box-sizing: border-box;
@@ -67,17 +67,26 @@
 </style>
 </head>
 <body>
-
 <div class="container">
     <h1>Check Flight Details</h1>
-    <form action="/checkFlights" method="post">
+    <form action="/searchFlight" method="post">
         <div class="form-group">
             <label for="sourceAirport">Enter Source Airport:</label>
-            <input type="text" id="sourceAirport" name="sourceAirport" required>
+            <select id="sourceAirport" name="sourceAirport" class="form-control" required>
+                <option value="" disabled selected>Select Airport</option>
+                <c:forEach var="airport" items="${airports}">
+                    <option value="${airport.airportLocation}">${airport.airportLocation}</option>
+                </c:forEach>
+            </select>
         </div>
         <div class="form-group">
             <label for="destinationAirport">Enter Destination Airport:</label>
-            <input type="text" id="destinationAirport" name="destinationAirport" required>
+            <select id="destinationAirport" name="destinationAirport" class="form-control" required>
+                <option value="" disabled selected>Select Airport</option>
+                <c:forEach var="airport" items="${airports}">
+                    <option value="${airport.airportLocation}">${airport.airportLocation}</option>
+                </c:forEach>
+            </select>
         </div>
         <div class="form-group">
             <button type="submit">Search Flights</button>
@@ -85,6 +94,5 @@
     </form>
     <a href="/index">Back to home</a>
 </div>
-
 </body>
 </html>

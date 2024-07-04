@@ -1,12 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Book a Flight</title>
 <style>
-    body {
+        body {
         font-family: Arial, sans-serif;
         background: url('/images/flights.png') no-repeat center center fixed;
         background-size: cover;
@@ -28,13 +29,13 @@
     }
     .form-group {
         margin-bottom: 15px;
-        text-align: left;
     }
     .form-group label {
         display: block;
         margin-bottom: 5px;
         color: rgb(25, 40, 89);
         font-size: 20px;
+        text-align: left;
     }
     .form-group input {
         width: 100%;
@@ -55,40 +56,94 @@
     .form-group button:hover {
         background-color: #c9302c;
     }
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
 </style>
+<script>
+    let passengerCount = 1;
+
+    function addPassenger() {
+        passengerCount++;
+        const container = document.getElementById('passenger-container');
+        const passengerDiv = document.createElement('div');
+        passengerDiv.className = 'passenger-group';
+        passengerDiv.id = 'passenger' + passengerCount;
+
+        passengerDiv.innerHTML = `
+            <h2>Passenger ${passengerCount}</h2>
+            <div class="form-group">
+                <label for="passengerName${passengerCount}">Passenger Name:</label>
+                <input type="text" id="passengerName${passengerCount}" name="passengerName" required>
+            </div>
+            <div class="form-group">
+                <label for="passengerDob${passengerCount}">Passenger Date of Birth:</label>
+                <input type="date" id="passengerDob${passengerCount}" name="passengerDob" required>
+            </div>
+        `;
+
+        container.appendChild(passengerDiv);
+    }
+
+    function removePassenger() {
+        if (passengerCount > 1) {
+            const container = document.getElementById('passenger-container');
+            const lastPassenger = document.getElementById('passenger' + passengerCount);
+            container.removeChild(lastPassenger);
+            passengerCount--;
+        }
+    }
+</script>
 </head>
 <body>
-
 <div class="container">
-    <h1>Book a Flight</h1>
-    <form action="/bookFlight" method="post">
+    <h1>Confirm Flight</h1>
         <div class="form-group">
-            <label for="passengerName">Passenger Name:</label>
-            <input type="text" id="passengerName" name="passengerName" required>
+            <label for="flightNumber">Flight Number:</label>
+            <input type="text" id="flightNumber" name="flightNumber" value="${flightNumber}" readonly>
         </div>
         <div class="form-group">
-            <label for="passengerDOB">Passenger Date of Birth:</label>
-            <input type="date" id="passengerDOB" name="passengerDOB" required>
+            <label for="flightName">Flight Name:</label>
+            <input type="text" id="flightName" name="flightName" value="${flightName}" readonly>
         </div>
         <div class="form-group">
             <label for="routeId">Route ID:</label>
-            <input type="text" id="routeId" name="routeId" required>
+            <input type="text" id="routeId" name="routeId" value="${routeId}" readonly>
         </div>
         <div class="form-group">
-            <label for="flightNumber">Flight Number:</label>
-            <input type="text" id="flightNumber" name="flightNumber" required>
+            <label for="price">Price:</label>
+            <input type="text" id="price" name="price" value="${price}" readonly>
+        </div>
+    <form action="/bookFlight" method="post">
+        <div id="passenger-container">
+            <div class="passenger-group" id="passenger1">
+                <h2>Passenger 1</h2>
+                <div class="form-group">
+                    <label for="passengerName1">Passenger Name:</label>
+                    <input type="text" id="passengerName1" name="passengerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="passengerDob1">Passenger Date of Birth:</label>
+                    <input type="date" id="passengerDob1" name="passengerDob" required>
+                </div>
+            </div>
         </div>
         <div class="form-group">
-            <label for="carrierName">Carrier Name:</label>
-            <input type="text" id="carrierName" name="carrierName" required>
+            <button type="button" onclick="addPassenger()">Add Passenger</button>
+            <button type="button" onclick="removePassenger()">Remove Passenger</button>
         </div>
+        <input type="hidden" name="routeId" value="${routeId}">
+        <input type="hidden" name="flightNumber" value="${flightNumber}">
+        <input type="hidden" name="flightName" value="${flightName}">
+        <input type="hidden" name="price" value="${price}">
         <div class="form-group">
-            <label for="fare">Fare:</label>
-            <input type="text" id="fare" name="fare" required>
-        </div>
         <button type="submit">Book Flight</button>
+        </div>
     </form>
 </div>
-
 </body>
 </html>

@@ -1,15 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Route Report</title>
+    <title>Flight Report</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
-            background: url('/images/viewRoute.jpg') no-repeat center center fixed;
-        	background-size: cover;
+            background: url('/images/checkAirport.jpg') no-repeat center center fixed;
+       		background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -54,23 +55,27 @@
 </head>
 <body>
     <div class="container">
-        <h2>Route Report</h2>
+        <h2>Flight Report</h2>
         <table>
             <thead>
                 <tr>
-                    <th>Route Id</th>
-                    <th>Start Airport</th>
-                    <th>Destination Airport</th>
-                    <th>Route Price</th>
+                    <th>Flight Name</th>
+                    <th>Flight Number</th>
+                    <th>Route ID</th>
+                    <th>Flight Seat Capacity</th>
+                    <th>Flight Arrival Time</th>
+                    <th>Route Departure Time</th>
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="route" items="${routes}">
+                <c:forEach var="flight" items="${flights}">
                     <tr>
-                        <td>${route.routeId}</td>
-                        <td>${route.sourceAirportCode}</td>
-                        <td>${route.destinationAirportCode}</td>
-                        <td>${route.price}</td>
+                        <td>${flight.flightName}</td>
+                        <td>${flight.flightNumber}</td>
+                        <td>${flight.routeId}</td>
+                        <td>${flight.seatCapacity}</td>
+                        <td>${flight.arrival}</td>
+                        <td>${flight.departure}</td>
                     </tr>
                 </c:forEach>
             </tbody>

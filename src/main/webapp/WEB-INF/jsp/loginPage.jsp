@@ -81,7 +81,7 @@
     <div class="error-message">${error}</div> <!-- Placeholder for error message -->
 
     <form:form action="/login" method="post">
-        <label for="username">Username:</label>
+        <label for="username">UserName:</label>
         <input type="text" id="username" name="username" required>
 
         <label for="password">Password:</label>

@@ -9,16 +9,16 @@ public class Passenger {
 	@EmbeddedId
 	private TicketPassengerEmbed embeddedId;
 	private String passengerName;
-	private String passengerDOB;
-	private Double fare;
+	private String passengerDob;
+	private Double price;
 	
 	
-	public Passenger(TicketPassengerEmbed embeddedId, String passengerName, String passengerDOB, Double fare) {
+	public Passenger(TicketPassengerEmbed embeddedId, String passengerName, String passengerDob, Double price) {
 		super();
 		this.embeddedId = embeddedId;
 		this.passengerName = passengerName;
-		this.passengerDOB = passengerDOB;
-		this.fare = fare;
+		this.passengerDob = passengerDob;
+		this.price = price;
 	}
 	public TicketPassengerEmbed getEmbeddedId() {
 		return embeddedId;
@@ -36,17 +36,17 @@ public class Passenger {
 	public void setPassengerName(String passengerName) {
 		this.passengerName = passengerName;
 	}
-	public String getPassengerDOB() {
-		return passengerDOB;
+	public String getPassengerDob() {
+		return passengerDob;
 	}
-	public void setPassengerDOB(String passengerDOB) {
-		this.passengerDOB = passengerDOB;
+	public void setPassengerDob(String passengerDob) {
+		this.passengerDob = passengerDob;
 	}
-	public Double getFare() {
-		return fare;
+	public Double getPrice() {
+		return price;
 	}
-	public void setFare(Double fare) {
-		this.fare = fare;
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 	
 	

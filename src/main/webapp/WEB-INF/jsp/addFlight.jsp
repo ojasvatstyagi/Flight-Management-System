@@ -103,12 +103,12 @@
         </div>
         <form action="/addFlight" method="post">
             <div class="form-group">
-                <label for="flightNo">Flight Id:</label>
-                <input type="text" id="flightNo" name="flightNo" placeholder="xxxx" required>
+                <label for="flightNumber">Flight Id:</label>
+                <input type="text" id="flightNumber" name="flightNumber" placeholder="xxxx" required>
             </div>
             <div class="form-group">
-                <label for="carrierName">Carrier Name:</label>
-                <input type="text" id="carrierName" name="carrierName" placeholder="xxxx" required>
+                <label for="flightName">Flight Name:</label>
+                <input type="text" id="flightName" name="flightName" placeholder="xxxx" required>
             </div>
             <div class="form-group">
                 <label for="seatCapacity">Seat Capacity:</label>

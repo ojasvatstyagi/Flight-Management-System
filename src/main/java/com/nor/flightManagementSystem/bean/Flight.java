@@ -7,34 +7,34 @@ import javax.persistence.Id;
 public class Flight {
 
     @Id
-    private Long flightNo;
-    private String carrierName;
+    private Long flightNumber;
+    private String flightName;
     private Long routeId;
     private Integer seatCapacity;
     private String departure;
     private String arrival;
-    private Integer seatBooked;
+    private Integer seatsBooked;
 
     public Flight() {
     	super();
     }
 
 
-    public Flight(Long flightNo, String carrierName, Long routeId, Integer seatCapacity, String departure,
+    public Flight(Long flightNumber, String flightName, Long routeId, Integer seatCapacity, String departure,
 			String arrival) {
 		super();
-		this.flightNo = flightNo;
-		this.carrierName = carrierName;
+		this.flightNumber = flightNumber;
+		this.flightName = flightName;
 		this.routeId = routeId;
 		this.seatCapacity = seatCapacity;
 		this.departure = departure;
 		this.arrival = arrival;
-		this.seatBooked = 0;
+		this.seatsBooked = 0;
 	}
 
     
-    public Long getFlightNo() {
-    	return flightNo;
+    public Long getFlightNumber() {
+    	return flightNumber;
     }
 
 	public Long getRouteId() {
@@ -67,16 +67,16 @@ public class Flight {
 	}
 
 
-	public void setFlightNo(Long flightNo) {
-        this.flightNo = flightNo;
+	public void setFlightNumber(Long flightNumber) {
+        this.flightNumber = flightNumber;
     }
 
-    public String getCarrierName() {
-        return carrierName;
+    public String getFlightName() {
+        return flightName;
     }
 
-    public void setCarrierName(String carrierName) {
-        this.carrierName = carrierName;
+    public void setFlightName(String flightName) {
+        this.flightName = flightName;
     }
 
     public Integer getSeatCapacity() {
@@ -89,16 +89,16 @@ public class Flight {
 
     @Override
     public String toString() {
-        return "Flight [flightNo=" + flightNo + ", carrierName=" + carrierName + ", seatCapacity=" + seatCapacity + "]";
+        return "Flight [flightNumber=" + flightNumber + ", flightName=" + flightName + ", seatCapacity=" + seatCapacity + "]";
     }
 
 
-	public Integer getSeatBooked() {
-		return seatBooked;
+	public Integer getSeatsBooked() {
+		return seatsBooked;
 	}
 
 
-	public void setSeatBooked(Integer seatBooked) {
-		this.seatBooked = seatBooked;
+	public void setSeatsBooked(Integer seatsBooked) {
+		this.seatsBooked = seatsBooked;
 	}
 }

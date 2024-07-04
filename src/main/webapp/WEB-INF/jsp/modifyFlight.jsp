@@ -79,8 +79,8 @@
         <h1>Delete Flight</h1>
         <form action="/deleteFlight" method="post">
             <div class="form-group">
-                <label for="flightNo">Enter Flight Id:</label>
-                <input type="text" id="flightNo" name="flightNo" required>
+                <label for="flightNumber">Enter Flight Id:</label>
+                <input type="text" id="flightNumber" name="flightNumber" required>
             </div>
             <div class="form-actions">
                 <button type="submit">Delete Flight</button>
@@ -92,12 +92,12 @@
         <h2>Update Flight Details</h2>
         <form action="/updateFlight" method="post">
             <div class="form-group">
-                <label for="flightNo">Enter Flight Number:</label>
-                <input type="text" id="flightNo" name="flightNo" required>
+                <label for="flightNumber">Enter Flight Number:</label>
+                <input type="text" id="flightNumber" name="fligflightNumberhtNo" required>
             </div>
             <div class="form-group">
-                <label for="carrierName">Enter Flight Name:</label>
-                <input type="text" id="carrierName" name="carrierName" required>
+                <label for="flightName">Enter Flight Name:</label>
+                <input type="text" id="flightName" name="flightName" required>
             </div>
             <div class="form-group">
                 <label for="arrival">Enter Arrival Time:</label>

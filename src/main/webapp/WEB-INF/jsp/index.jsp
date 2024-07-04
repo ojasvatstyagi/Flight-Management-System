@@ -96,11 +96,11 @@
     <a href="/viewAirports">View All Airports</a>
     <a href="/modifyAirport">Modify Airport Details</a>
     <a href="/addFlight">Add Flight Details</a>
-    <a href="/checkFlights">View Flight Details</a>
+    <a href="/viewFlights">View Flight Details</a>
     <a href="/modifyFlight">Modify Flight Details</a>
     <a href="/route">Add New Route</a>
     <a href="/viewRoutes">View Routes</a>
-    <a href="/bookFlight">Book Flight</a>
+    <a href="/searchFlight">Book Flight</a>
     <a href="/viewBooking">View Bookings</a>
     <a href="/aboutUs">About Us</a>
     <a href="/betaAirline">Logout</a>

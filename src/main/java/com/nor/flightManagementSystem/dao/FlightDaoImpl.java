@@ -29,8 +29,8 @@ public class FlightDaoImpl implements FlightDao{
     }
 
     @Override
-	public Flight viewFlight(Long flightNo) {
-    	return flightRepository.findById(flightNo).get();
+	public Flight viewFlight(Long flightNumber) {
+    	return flightRepository.findById(flightNumber).get();
     }
 	
     @Override
@@ -44,8 +44,8 @@ public class FlightDaoImpl implements FlightDao{
 	}
 
 	@Override
-	public void deleteFlightByFlightNo(Long flightNo) {
-		flightRepository.deleteById(flightNo);
+	public void deleteFlightByFlightNumber(Long flightNumber) {
+		flightRepository.deleteById(flightNumber);
 	}
 
 }

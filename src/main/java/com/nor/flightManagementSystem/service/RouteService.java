@@ -12,7 +12,7 @@ public class RouteService {
         returnRoute.setRouteId(route.getRouteId() + 1); // Assuming route IDs are sequential
         returnRoute.setSourceAirportCode(route.getDestinationAirportCode());
         returnRoute.setDestinationAirportCode(route.getSourceAirportCode());
-        returnRoute.setFair(route.getFair());
+        returnRoute.setPrice(route.getPrice());
         return returnRoute;
     }
 }
