@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nor.flightManagementSystem.bean.Airport;
+import com.nor.flightManagementSystem.bean.Contact;
 import com.nor.flightManagementSystem.dao.AirportDao;
+import com.nor.flightManagementSystem.dao.ContactRepository;
 
 @ControllerAdvice
 @RestController
@@ -21,6 +23,9 @@ public class AirportController {
 
     @Autowired
     private AirportDao airportDao;
+    
+    @Autowired
+    private ContactRepository repo;
     
     @GetMapping("/betaAirline")
     public ModelAndView showHomePage() {
@@ -95,5 +100,16 @@ public class AirportController {
         return new ModelAndView("index");
     }
 
+    @GetMapping("/about")
+    public ModelAndView showAboutPage() {
+        ModelAndView mv = new ModelAndView("about");
+        mv.addObject("contacts", new Contact());
+        return mv;
+    }
     
+    @PostMapping("/about")
+    public ModelAndView saveContactPage(@ModelAttribute("contacts") Contact contact) {
+        repo.save(contact);
+        return new ModelAndView("about");
+    }
 }

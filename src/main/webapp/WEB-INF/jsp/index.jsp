@@ -102,7 +102,7 @@
     <a href="/viewRoutes">View Routes</a>
     <a href="/searchFlight">Book Flight</a>
     <a href="/viewBooking">View Bookings</a>
-    <a href="/aboutUs">About Us</a>
+    <a href="/about">About Us</a>
     <a href="/betaAirline">Logout</a>
 </div>
 

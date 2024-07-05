@@ -166,4 +166,26 @@ public class BookingController {
         LocalDate birthDate = LocalDate.parse(dob);
         return Period.between(birthDate, LocalDate.now()).getYears();
     }
+    
+ // This method shows the initial form page
+    @GetMapping("/viewBooking")
+    public ModelAndView showBookingForm() {
+        return new ModelAndView("viewTicket");
+    }
+
+    // This method handles the form submission and shows the ticket details
+    @PostMapping("/viewBooking")
+    public ModelAndView viewBooking(@RequestParam("ticketNumber") Long ticketNumber) {
+        Ticket ticket = ticketDao.findTicketByTicketNumber(ticketNumber);
+        ModelAndView mv = new ModelAndView("viewTicket");
+        mv.addObject("ticket", ticket);
+        mv.addObject("passengers", passengerDao.findByTicketNumber(ticketNumber));
+        return mv;
+    }
+    
+    @PostMapping("/cancelBooking")
+    public ModelAndView deleteAirport(@RequestParam("ticketNumber") Long ticketNumber) {
+    	ticketDao.deleteByTicketNumber(ticketNumber);
+    	return new ModelAndView("index"); 
+    }
 }

@@ -9,7 +9,7 @@
 <style>
     body {
         font-family: Arial, sans-serif;
-        background: url('/images/flights.png') no-repeat center center fixed;
+        background: url('/images/ticket.png') no-repeat center center fixed;
         background-size: cover;
         margin: 0;
         padding: 0;
@@ -19,7 +19,7 @@
         width: 70%;
         margin: 50px auto;
         border-radius: 10px;
-        background-color: #fff;
+        background-color: rgba(255, 255, 255, 0.8);
         padding: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         text-align: center;
