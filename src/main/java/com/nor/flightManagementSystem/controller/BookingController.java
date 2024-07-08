@@ -101,14 +101,14 @@ public class BookingController {
 
     @PostMapping("/bookFlight")
     public ModelAndView bookFlight(@RequestParam("routeId") Long routeId,
-                             @RequestParam("flightNumber") Long flightNumber,
-                             @RequestParam("flightName") String flightName,
-                             @RequestParam("price") Double price,
-                             @RequestParam("passengerName") List<String> passengerNames,
-                             @RequestParam("passengerDob") List<String> passengerDobs) {
+                                   @RequestParam("flightNumber") Long flightNumber,
+                                   @RequestParam("flightName") String flightName,
+                                   @RequestParam("price") Double price,
+                                   @RequestParam("passengerName") List<String> passengerNames,
+                                   @RequestParam("passengerDob") List<String> passengerDobs) {
 
         if (passengerNames.isEmpty() || passengerNames.size() != passengerDobs.size()) {
-            ModelAndView mv = new ModelAndView("bookingErrorPage");
+            ModelAndView mv = new ModelAndView("errorPage");
             mv.addObject("message", "Passenger details are incomplete.");
             return mv;
         }
@@ -153,7 +153,8 @@ public class BookingController {
 
         // Update the seat count
         Flight flight = flightDao.viewFlight(flightNumber);
-        flight.setSeatsBooked(flight.getSeatsBooked() + passengersCount);
+        int currentSeatsBooked = (flight.getSeatsBooked() != null) ? flight.getSeatsBooked() : 0;
+        flight.setSeatsBooked(currentSeatsBooked + passengersCount);
         flightDao.addFlight(flight);
 
         ModelAndView mv = new ModelAndView("ticket");

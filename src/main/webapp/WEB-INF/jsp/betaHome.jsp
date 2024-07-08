@@ -1,18 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcome to Beta Airline</title>
+<title>Flight Management System</title>
+<link rel="stylesheet" href="../assets/css/styles.min.css" />
 <style>
     body {
         font-family: 'Helvetica Neue', Arial, sans-serif;
-        background: url('/images/mainPage.png') no-repeat center center fixed;
+        background: url('../assets/images/backgrounds/mainPage.png') no-repeat center center fixed;
         background-size: cover;
         margin: 0;
-        height: 100vh;
+        height: 65vh;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -37,11 +38,16 @@
 </style>
 </head>
 <body>
-    <div id="container">
-        <a href="/loginpage">
-            <img src="/images/loginL.png" alt="Login to Beta Airline">
-        </a>
-    </div>
+
+<!-- Hero Section -->
+    <section id="hero" class="hero section">
+        <div class="container text-center">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+            <a href="/loginpage"><button type="button" class="btn btn-primary">Get Started</button></a>
+            </div>
+        </div>
+        </div>
+        </section>
 </body>
 </html>
-    
