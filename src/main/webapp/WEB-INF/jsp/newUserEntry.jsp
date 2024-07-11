@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +34,7 @@
         margin: 10px 0 5px;
         font-size: 16px;
     }
-    input[type="text"], input[type="password"], select {
+    input, select {
         width: 100%;
         padding: 10px;
         margin-bottom: 10px;
@@ -78,22 +79,16 @@
         var pass2 = document.getElementById("pass2").value;
         var error = document.getElementById("error");
 
-        // Updated regex pattern
         var regex = /^(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{6,10}$/;
 
-        // Check if passwords match
         if (pass1 !== pass2) {
             error.textContent = "Passwords do not match";
             return false;
-        }
-        
-        // Check if password meets criteria
-        else if (!regex.test(pass1)) {
+        } else if (!regex.test(pass1)) {
             error.textContent = "Password must be 6-10 characters long and include at least one special character";
             return false;
         }
 
-        // If validation is successful, submit the form
         error.textContent = "";
         document.getElementById("registrationForm").submit();
         return true;
@@ -103,22 +98,25 @@
 <body>
     <div class="container">
         <h3>Flight Reservation System - Sign Up</h3>
-        <div id="error" class="error"></div>
+        <div id="error" class="error">${error}</div> <!-- Display error message -->
         <form:form id="registrationForm" action="/register" method="post" modelAttribute="userRecord" onsubmit="return validatePassword()">
             <form:label path="username">Enter New User Id:</form:label>
             <form:input path="username" />
             <br/>
+            <form:label path="email">Enter Email:</form:label>
+            <form:input type="email" path="email" />
+            <br/>
             <form:label for ="type" path="type">Select User's Type:</form:label>
-            <select id = "type" name="type">
+            <select id = "type" name="type" required>
                 <option value="Customer">Customer</option>
                 <option value="Admin">Admin</option>
             </select>
             <br/>
             <form:label path="password">Enter New Password:</form:label>
-            <form:input type="password" id="pass1" path="password"/>
+            <form:input type="password" id="pass1" path="password" />
             <br/>
             <label for="pass2">Re-type New Password:</label>
-            <input type="password" id="pass2"/>
+            <input type="password" id="pass2" />
             <br/>
             <button type="submit">Submit</button>
             <button type="reset">Reset</button>

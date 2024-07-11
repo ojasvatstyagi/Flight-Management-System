@@ -94,6 +94,10 @@
                 <label for="airportLocation">Enter Airport Location:</label>
                 <input type="text" id="airportLocation" name="airportLocation" required>
             </div>
+            <div class="form-group">
+                <label for="details">Enter Airport Details:</label>
+                <textarea id="details" name="details" rows="5" required></textarea>
+            </div>
             <div class="form-actions">
                 <button type="submit">Update Airport</button>
             </div>

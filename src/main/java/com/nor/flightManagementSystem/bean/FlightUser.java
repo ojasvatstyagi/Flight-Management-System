@@ -9,15 +9,24 @@ import org.springframework.security.core.userdetails.User;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@SuppressWarnings("serial")
 @Entity
 public class FlightUser extends User {
-	private static final long serialVersionUID = 1L;
 
 	@Id
 	private String username;
 	private String password;
+	private String email;
 	private String type;
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public String getUsername() {
 		return username;
 	}
@@ -42,16 +51,17 @@ public class FlightUser extends User {
 		this.type = type;
 	}
 
-	public FlightUser(String username, String password, String type, Collection<? extends GrantedAuthority> authorities) {
+	public FlightUser(String username, String password, String type, String email, Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, authorities);
 		this.username = username;
 		this.password = password;
+		this.email = email;
 		this.type = type;
 	}
 
 	@Override
 	public String toString() {
-		return "FlightUser [username=" + username + ", password=" + password + ", type=" + type + "]";
+		return "FlightUser [username=" + username + ", password=" + password + ", email=" + email + ", type=" + type + "]";
 	}
 
 	public FlightUser() {

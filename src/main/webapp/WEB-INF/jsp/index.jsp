@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Beta Airlines - Dashboard</title>
+<title>Dashboard</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -81,10 +81,11 @@
 <body>
 
 <div class="header">
-    <div>
+   <!--<div>
         <img src="/images/logo.png" alt="Delta Airlines Logo">
-    </div>
-    <h1>BETA AIRLINES</h1>
+    </div>--> 
+    
+    <h1>Flight Management System</h1>
     <div class="user">
         Welcome ${sessionScope.user.username}
     </div>
@@ -103,7 +104,7 @@
     <a href="/searchFlight">Book Flight</a>
     <a href="/viewBooking">View Bookings</a>
     <a href="/about">About Us</a>
-    <a href="/betaAirline">Logout</a>
+    <a href="/fms">Logout</a>
 </div>
 
 <div class="content">

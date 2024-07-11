@@ -79,6 +79,9 @@
 
             <label for="airportLocation">Airport Location:</label>
             <input type="text" id="airportLocation" name="airportLocation" required>
+            
+            <label for="details">About Airport:</label>
+            <textarea id="details" name="details" rows="5" required></textarea>
 
             <button type="submit">Submit</button>
         </form>

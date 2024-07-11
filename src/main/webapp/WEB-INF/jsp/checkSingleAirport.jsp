@@ -49,6 +49,7 @@
     <h2>Airport Details</h2>
     <p>Airport Code: ${airport.airportCode}</p>
     <p>Airport Location: ${airport.airportLocation}</p>
+    <p>About Airport: ${airport.details}</p>
     <a href="/viewAirports">Back</a>
 	</div>
 </body>
