@@ -35,14 +35,19 @@ public class RouteDaoImpl implements RouteDao {
         return (val == null) ? 101L : val + 1;
     }
 
-	@Override
-	public List<Long> findAllRoutesId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Route findRouteBySourceAndDestination(String source, String destination) {
 		return repo.findRouteBySourceAndDestination(source, destination);
+	}
+
+	@Override
+	public void deleteRouteById(Long routeId) {
+		repo.deleteById(routeId);
+	}
+
+	@Override
+	public void updateRoute(Route route) {
+		repo.save(route);
 	}
 }

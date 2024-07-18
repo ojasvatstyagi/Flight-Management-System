@@ -18,7 +18,6 @@ import com.nor.flightManagementSystem.dao.FlightDao;
 import com.nor.flightManagementSystem.dao.RouteDao;
 import com.nor.flightManagementSystem.exception.DatabaseException;
 import com.nor.flightManagementSystem.exception.DuplicateFlightNumberException;
-import com.nor.flightManagementSystem.exception.FlightNotFoundException;
 import com.nor.flightManagementSystem.service.FlightService;
 
 @ControllerAdvice
@@ -53,7 +52,7 @@ public class FlightController {
         Flight returnFlight = flightService.createReturnFlight(flight, returnDeparture, returnArrival);
     	flightDao.addFlight(flight);
     	flightDao.addFlight(returnFlight);
-        return new ModelAndView("index");
+        return new ModelAndView("redirect:/index");
     	} catch (DuplicateFlightNumberException e) {
             throw e;
         } catch (Exception e) {
@@ -89,18 +88,8 @@ public class FlightController {
     
     @PostMapping("/deleteFlight")
     public ModelAndView deleteAirport(@RequestParam("flightNumber") Long flightNumber) {
-    	try {
-            Flight flight = flightDao.viewFlight(flightNumber);
-            if (flight == null) {
-                throw new FlightNotFoundException("flight with Number " + flightNumber + " not found.");
-            }
 	    	flightDao.deleteFlightByFlightNumber(flightNumber);
-	    	return new ModelAndView("index"); 
-    	} catch (FlightNotFoundException e) {
-            throw e;
-        } catch (Exception e) {
-            throw new DatabaseException("Error deleting flight from the database", e);
-        }
+            return new ModelAndView("redirect:/index");
     }
     
     @PostMapping("/updateFlight")
@@ -110,27 +99,12 @@ public class FlightController {
                                @RequestParam("departure") String departure,
                                @RequestParam("routeId") Long routeId,
                                @RequestParam("seatCapacity") Integer seatCapacity) {
-    	try {
-            Flight flight = flightDao.viewFlight(flightNumber);
-            if (flight == null) {
-                throw new FlightNotFoundException("flight with Number " + flightNumber + " not found.");
-            }
 	        Flight newFlight = new Flight(flightNumber, flightName, routeId, seatCapacity, departure, arrival);
 	        flightDao.updateFlight(newFlight);
-	        return new ModelAndView("index");
-    	} catch (FlightNotFoundException e) {
-            throw e;
-        } catch (Exception e) {
-            throw new DatabaseException("Error updating flight in the database", e);
-        }
+            return new ModelAndView("redirect:/index");
     }
 
-    @ExceptionHandler(FlightNotFoundException.class)
-    public ModelAndView handleFlightNotFoundException(FlightNotFoundException e) {
-        ModelAndView mv = new ModelAndView("errorPage");
-        mv.addObject("error", e.getMessage());
-        return mv;
-    } 
+     
     @ExceptionHandler(DuplicateFlightNumberException.class)
     public ModelAndView handleDuplicateFlightNumberException(DuplicateFlightNumberException e) {
         ModelAndView mv = new ModelAndView("errorPage");

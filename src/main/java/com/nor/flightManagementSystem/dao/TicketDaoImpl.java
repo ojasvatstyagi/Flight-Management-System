@@ -1,6 +1,8 @@
 package com.nor.flightManagementSystem.dao;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +36,11 @@ public class TicketDaoImpl implements TicketDao{
 	public void deleteByTicketNumber(Long ticketNumber) {
 		repo.deleteById(ticketNumber);
 	}
+
+	@Override
+	public List<Ticket> findAllTickets() {
+		return repo.findAll();
+	}
+
 
 }

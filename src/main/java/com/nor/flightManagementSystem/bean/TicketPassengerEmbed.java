@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 public class TicketPassengerEmbed implements Serializable{
 	@NotNull
 	private Long ticketNumber;
+
 	@NotNull
 	private Integer serialNumber;
 	
@@ -50,5 +51,6 @@ public class TicketPassengerEmbed implements Serializable{
 		TicketPassengerEmbed other = (TicketPassengerEmbed) obj;
 		return Objects.equals(serialNumber, other.serialNumber) && Objects.equals(ticketNumber, other.ticketNumber);
 	}
+	
 	
 }

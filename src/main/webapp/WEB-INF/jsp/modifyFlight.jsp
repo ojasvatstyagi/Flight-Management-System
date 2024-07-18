@@ -79,9 +79,14 @@
         <h1>Delete Flight</h1>
         <form action="/deleteFlight" method="post">
             <div class="form-group">
-                <label for="flightNumber">Enter Flight Id:</label>
-                <input type="text" id="flightNumber" name="flightNumber" required>
-            </div>
+	            <label for="flightNumber">Enter Flight Id:</label>
+	            <select id="flightNumber" name="flightNumber" required>
+	                <option value="" disabled selected>Select Flight</option>
+	                <c:forEach var="flight" items="${flights}">
+	                    <option value="${flight.flightNumber}">${flight.flightNumber} -> ${flight.flightName}</option>
+	                </c:forEach>
+	            </select>
+        	</div>
             <div class="form-actions">
                 <button type="submit">Delete Flight</button>
             </div>
@@ -93,7 +98,12 @@
         <form action="/updateFlight" method="post">
             <div class="form-group">
                 <label for="flightNumber">Enter Flight Number:</label>
-                <input type="text" id="flightNumber" name="fligflightNumberhtNo" required>
+                <select id="flightNumber" name="flightNumber" required>
+	                <option value="" disabled selected>Select Flight</option>
+	                <c:forEach var="flight" items="${flights}">
+	                    <option value="${flight.flightNumber}">${flight.flightNumber} -> ${flight.flightName}</option>
+	                </c:forEach>
+	            </select>
             </div>
             <div class="form-group">
                 <label for="flightName">Enter Flight Name:</label>

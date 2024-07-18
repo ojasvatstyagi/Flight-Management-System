@@ -1,7 +1,10 @@
 package com.nor.flightManagementSystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,10 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nor.flightManagementSystem.bean.FlightUser;
-import com.nor.flightManagementSystem.exception.UserAlreadyExistsException;
 import com.nor.flightManagementSystem.exception.DatabaseException;
+import com.nor.flightManagementSystem.exception.UserAlreadyExistsException;
 import com.nor.flightManagementSystem.service.FlightUserService;
 
+@ControllerAdvice
 @RestController
 public class LoginController {
 
@@ -29,10 +33,24 @@ public class LoginController {
         return new ModelAndView("Home");
     }
     
-    @GetMapping("/index")
+    @GetMapping({"/index", "/"})
     public ModelAndView showIndexPage() {
-        return new ModelAndView("index");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        
+        String userType = service.getTypeByUsername(username);
+        
+        String indexPage = "";
+        if (userType.equalsIgnoreCase("Admin"))
+            indexPage = "indexAdm";
+        else if (userType.equalsIgnoreCase("Customer"))
+            indexPage = "indexCust";
+        
+        ModelAndView mv = new ModelAndView(indexPage);
+        mv.addObject("username", username); // Add username to the model
+        return mv;
     }
+
     
     @GetMapping("/register")
     public ModelAndView showUserRegistrationPage() {

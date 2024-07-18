@@ -1,5 +1,7 @@
 package com.nor.flightManagementSystem.dao;
 
+import java.util.List;
+
 import com.nor.flightManagementSystem.bean.Ticket;
 
 public interface TicketDao {
@@ -7,4 +9,5 @@ public interface TicketDao {
 	public Long findLastTicketNumber();
 	public Ticket findTicketByTicketNumber(Long ticketNumber);
 	public void deleteByTicketNumber(Long ticketNumber);
+	public List<Ticket> findAllTickets();
 }

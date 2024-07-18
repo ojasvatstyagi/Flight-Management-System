@@ -37,7 +37,7 @@
         .container label {
             margin-bottom: 8px;
         }
-        .container input, .container select {
+        .container input,select,textarea {
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
@@ -85,6 +85,7 @@
 
             <button type="submit">Submit</button>
         </form>
+        <br>
         <a href="/index">Back to home</a>
     </div>
 </body>

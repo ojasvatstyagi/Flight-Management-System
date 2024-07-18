@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Delete Airport and Update Airport</title>
+    <title>Delete Route and Update Route</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -37,7 +39,7 @@
             color: rgb(25, 40, 89);
             font-size: 20px;
         }
-        .form-group input, select {
+        .form-group input select {
             width: 100%;
             padding: 8px;
             box-sizing: border-box;
@@ -71,45 +73,49 @@
 </head>
 <body>
     <div class="container">
-        <h1>Delete Airport</h1>
-        <form action="/deleteAirport" method="post">
+        <h1>Delete Route</h1>
+        <form action="/deleteRoute" method="post">
             <div class="form-group">
-	            <label for="airportCode">Enter Airport Code:</label>
-	            <select id="airportCode" name="airportCode" required>
-	                <option value="" disabled selected>Select Airport</option>
-	                <c:forEach var="airport" items="${airports}">
-	                    <option value="${airport.airportCode}">${airport.airportCode}</option>
-	                </c:forEach>
-	            </select>
-        	</div>
+                <label for="routeId">Enter Route Code:</label>
+                <input type="text" id="routeId" name="routeId" required>
+            </div>
             <div class="form-actions">
-                <button type="submit">Delete Airport</button>
+                <button type="submit">Delete Route</button>
             </div>
         </form>
     </div>
     
     <div class="container">
-        <h2>Update Airport Details</h2>
-        <form action="/updateAirport" method="post">
+        <h2>Update Route Details</h2>
+        <form action="/updateRoute" method="post">
             <div class="form-group">
-                <label for="airportCode">Enter Airport Code:</label>
-                <select id="airportCode" name="airportCode" required>
-	                <option value="" disabled selected>Select Airport</option>
-	                <c:forEach var="airport" items="${airports}">
-	                    <option value="${airport.airportCode}">${airport.airportCode}</option>
-	                </c:forEach>
-	            </select>
+                <label for="routeId">Enter Route Code:</label>
+                <input type="text" id="routeId" name="routeId" required>
             </div>
             <div class="form-group">
-                <label for="airportLocation">Enter Airport Location:</label>
-                <input type="text" id="airportLocation" name="airportLocation" required>
+            	<label for="sourceAirportCode">Select Source Airport Code:</label>
+                <select id="sourceAirportCode" name="sourceAirportCode"  required>
+                    <option value="" disabled selected>Select Airport Code</option>
+                    <c:forEach var="airport" items="${codeList}">
+                        <option value="${airport.airportCode}">${airport.airportCode}</option>
+                    </c:forEach>
+                </select>
             </div>
             <div class="form-group">
-                <label for="details">Enter Airport Details:</label>
-                <textarea id="details" name="details" rows="5" required></textarea>
+                <label for="destinationAirportCode">Select Destination Airport Code:</label>
+                <select id="destinationAirportCode" name="destinationAirportCode" required>
+                    <option value="" disabled selected>Select Airport Code</option>
+                    <c:forEach var="airport" items="${codeList}">
+                        <option value="${airport.airportCode}">${airport.airportCode}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="price">Enter Route Price:</label>
+                <input type="text" id="price" name="price" placeholder="xxxx" required>
             </div>
             <div class="form-actions">
-                <button type="submit">Update Airport</button>
+                <button type="submit">Update Route</button>
             </div>
         </form>
         <a href="/index">Back to home</a>

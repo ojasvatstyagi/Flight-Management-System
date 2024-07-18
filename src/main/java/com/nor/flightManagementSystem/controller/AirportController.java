@@ -17,7 +17,6 @@ import com.nor.flightManagementSystem.bean.Airport;
 import com.nor.flightManagementSystem.bean.Contact;
 import com.nor.flightManagementSystem.dao.AirportDao;
 import com.nor.flightManagementSystem.dao.ContactRepository;
-import com.nor.flightManagementSystem.exception.AirportNotFoundException;
 import com.nor.flightManagementSystem.exception.DatabaseException;
 import com.nor.flightManagementSystem.exception.DuplicateAirportCodeException;
 
@@ -49,7 +48,7 @@ public class AirportController {
             airport.setAirportLocation(airport.getAirportLocation().toUpperCase());
             airport.setDetails(airport.getDetails());
             airportDao.addAirport(airport);
-            return new ModelAndView("index");
+            return new ModelAndView("redirect:/index");
         } catch (DuplicateAirportCodeException e) {
             throw e;
         } catch (Exception e) {
@@ -71,19 +70,11 @@ public class AirportController {
 
     @GetMapping("/viewAirports/{id}")
     public ModelAndView showSingleAirportPage(@PathVariable("id") String id) {
-        try {
             Airport airport = airportDao.findAirportById(id);
-            if (airport == null) {
-                throw new AirportNotFoundException("Airport with ID " + id + "not found.");
-            }
+            
             ModelAndView mv = new ModelAndView("checkSingleAirport");
             mv.addObject("airport", airport);
             return mv;
-        } catch (AirportNotFoundException e) {
-            throw e;
-        } catch (Exception e) {
-            throw new DatabaseException("Error retrieving airport from the database", e);
-        }
     }
 
     @GetMapping("/viewAirportCode")
@@ -112,38 +103,19 @@ public class AirportController {
 
     @PostMapping("/deleteAirport")
     public ModelAndView deleteAirport(@RequestParam("airportCode") String airportCode) {
-        try {
-            Airport airport = airportDao.findAirportById(airportCode);
-            if (airport == null) {
-                throw new AirportNotFoundException("Airport with code " + airportCode + " not found.");
-            }
             airportDao.deleteAirportByCode(airportCode);
-            return new ModelAndView("index");
-        } catch (AirportNotFoundException e) {
-            throw e;
-        } catch (Exception e) {
-            throw new DatabaseException("Error deleting airport from the database", e);
-        }
+            return new ModelAndView("redirect:/index");
     }
 
     @PostMapping("/updateAirport")
     public ModelAndView updateAirport(@RequestParam("airportCode") String airportCode,
                                       @RequestParam("airportLocation") String airportLocation,
                                       @RequestParam("details") String details) {
-        try {
-            Airport airport = airportDao.findAirportById(airportCode);
-            if (airport == null) {
-                throw new AirportNotFoundException("Airport with code " + airportCode + " not found.");
-            }
+    	Airport airport = airportDao.findAirportById(airportCode);
             airport.setAirportLocation(airportLocation.toUpperCase());
             airport.setDetails(details);
             airportDao.updateAirport(airport);
-            return new ModelAndView("index");
-        } catch (AirportNotFoundException e) {
-            throw e;
-        } catch (Exception e) {
-            throw new DatabaseException("Error updating airport in the database", e);
-        }
+            return new ModelAndView("redirect:/index");
     }
 
     @GetMapping("/about")
@@ -161,13 +133,6 @@ public class AirportController {
         } catch (Exception e) {
             throw new DatabaseException("Error saving contact to the database", e);
         }
-    }
-
-    @ExceptionHandler(AirportNotFoundException.class)
-    public ModelAndView handleAirportNotFoundException(AirportNotFoundException e) {
-        ModelAndView mv = new ModelAndView("errorPage");
-        mv.addObject("error", e.getMessage());
-        return mv;
     }
 
     @ExceptionHandler(DuplicateAirportCodeException.class)

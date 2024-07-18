@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Dashboard</title>
+<title>Dash board</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -43,7 +43,7 @@
     }
     .header .user {
         margin-right: 30px;
-        font-size: 20px;
+        font-size: 30px;
     }
     .nav {
         background-color: rgb(17 23 43);
@@ -80,26 +80,17 @@
 </head>
 <body>
 
-<div class="header">
-   <!--<div>
-        <img src="/images/logo.png" alt="Delta Airlines Logo">
-    </div>--> 
-    
-    <h1>Flight Management System</h1>
+<div class="header"> 
     <div class="user">
-        Welcome ${sessionScope.user.username}
+        Welcome, ${username}
     </div>
+    <h1>Flight Management System</h1>
 </div>
 
 <div class="nav">
     <h2>DashBoard</h2>
-    <a href="/addAirport">Add Airport</a>
     <a href="/viewAirports">View All Airports</a>
-    <a href="/modifyAirport">Modify Airport Details</a>
-    <a href="/addFlight">Add Flight Details</a>
     <a href="/viewFlights">View Flight Details</a>
-    <a href="/modifyFlight">Modify Flight Details</a>
-    <a href="/route">Add New Route</a>
     <a href="/viewRoutes">View Routes</a>
     <a href="/searchFlight">Book Flight</a>
     <a href="/viewBooking">View Bookings</a>

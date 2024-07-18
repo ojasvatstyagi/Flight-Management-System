@@ -22,10 +22,10 @@ import com.nor.flightManagementSystem.dao.PassengerDao;
 import com.nor.flightManagementSystem.dao.RouteDao;
 import com.nor.flightManagementSystem.dao.TicketDao;
 import com.nor.flightManagementSystem.exception.DatabaseException;
-import com.nor.flightManagementSystem.exception.FlightNotFoundException;
 import com.nor.flightManagementSystem.exception.IncompletePassengerDetailsException;
 import com.nor.flightManagementSystem.exception.InvalidAirportCodeException;
 import com.nor.flightManagementSystem.exception.RouteNotFoundException;
+import com.nor.flightManagementSystem.exception.TicketNotFoundException;
 import com.nor.flightManagementSystem.service.TicketService;
 
 @Controller
@@ -175,29 +175,52 @@ public class BookingController {
 
     @PostMapping("/viewBooking")
     public ModelAndView viewBooking(@RequestParam("ticketNumber") Long ticketNumber) {
-        try {
-            Ticket ticket = ticketDao.findTicketByTicketNumber(ticketNumber);
-            if (ticket == null) {
-                throw new FlightNotFoundException("Ticket not found.");
-            }
+    	Ticket ticket = ticketDao.findTicketByTicketNumber(ticketNumber);
+        
             ModelAndView mv = new ModelAndView("viewTicket");
             mv.addObject("ticket", ticket);
             mv.addObject("passengers", passengerDao.findByTicketNumber(ticketNumber));
             return mv;
-        } catch (Exception e) {
-            throw new DatabaseException("Error viewing booking", e);
-        }
     }
 
     @PostMapping("/cancelBooking")
-    public ModelAndView deleteAirport(@RequestParam("ticketNumber") Long ticketNumber) {
+    public ModelAndView cancelBooking(@RequestParam("ticketNumber") Long ticketNumber) {
         try {
             ticketDao.deleteByTicketNumber(ticketNumber);
-            return new ModelAndView("index");
+            return new ModelAndView("redirect:/index");
+        } catch (TicketNotFoundException e) {
+            throw e;
         } catch (Exception e) {
             throw new DatabaseException("Error cancelling booking", e);
         }
     }
+
+
+    @GetMapping("/viewTickets")
+    public ModelAndView showTicketReportPage() {
+        try {
+            List<Ticket> tickets = ticketDao.findAllTickets();
+            ModelAndView mv = new ModelAndView("viewTickets");
+            mv.addObject("tickets", tickets);
+            return mv;
+        } catch (Exception e) {
+            throw new DatabaseException("Error retrieving airports from the database", e);
+        }
+    }
+    
+    
+    @GetMapping("/viewPassengers")
+    public ModelAndView showPassengerReportPage() {
+        try {
+            List<Passenger> passengers = passengerDao.findAllPassengers();
+            ModelAndView mv = new ModelAndView("viewPassenger");
+            mv.addObject("passengers", passengers);
+            return mv;
+        } catch (Exception e) {
+            throw new DatabaseException("Error retrieving passengers from the database", e);
+        }
+    }
+
 
     @ExceptionHandler(InvalidAirportCodeException.class)
     public ModelAndView handleInvalidAirportCodeException(InvalidAirportCodeException e) {
@@ -220,12 +243,6 @@ public class BookingController {
         return mv;
     }
 
-    @ExceptionHandler(FlightNotFoundException.class)
-    public ModelAndView handleFlightNotFoundException(FlightNotFoundException e) {
-        ModelAndView mv = new ModelAndView("errorPage");
-        mv.addObject("error", e.getMessage());
-        return mv;
-    }
 
     @ExceptionHandler(DatabaseException.class)
     public ModelAndView handleDatabaseException(DatabaseException e) {
@@ -233,5 +250,21 @@ public class BookingController {
         mv.addObject("error", e.getMessage());
         return mv;
     }
+    
+    @ExceptionHandler(TicketNotFoundException.class)
+    public ModelAndView handleTicketNotFoundException(TicketNotFoundException e) {
+        ModelAndView mv = new ModelAndView("errorPage");
+        mv.addObject("error", e.getMessage());
+        return mv;
+    }
+
+
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleGeneralException(Exception e) {
+        ModelAndView mv = new ModelAndView("errorPage");
+        mv.addObject("error", "An unexpected error occurred. Please try again later.");
+        return mv;
+    }
+
 
 }

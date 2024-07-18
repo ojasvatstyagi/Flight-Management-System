@@ -121,7 +121,7 @@
     <form action="/bookFlight" method="post">
         <div id="passenger-container">
             <div class="passenger-group" id="passenger1">
-                <h2>Passenger 1</h2>
+                <h2>Passenger</h2>
                 <div class="form-group">
                     <label for="passengerName1">Passenger Name:</label>
                     <input type="text" id="passengerName1" name="passengerName" required>

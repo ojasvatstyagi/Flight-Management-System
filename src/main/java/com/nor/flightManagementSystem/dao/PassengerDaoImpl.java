@@ -24,4 +24,9 @@ public class PassengerDaoImpl implements PassengerDao {
     public List<Passenger> findByTicketNumber(Long ticketNumber) {
         return repo.findByEmbeddedId_TicketNumber(ticketNumber);
     }
+
+	@Override
+	public List<Passenger> findAllPassengers() {
+		return repo.findAll();
+	}
 }

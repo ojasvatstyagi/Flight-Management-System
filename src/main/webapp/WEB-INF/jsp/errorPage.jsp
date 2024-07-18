@@ -18,7 +18,7 @@
     }
     .container {
         text-align: center;
-        background-color: #fff;
+        background-color: rgba(255, 255, 255, 0.8);
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -40,6 +40,7 @@
 <div class="container">
     <h2>Error</h2>
     <div class="error-message">${error}</div>
+    <br>
     <a href="/index">Go to Home</a>
 </div>
 </body>
