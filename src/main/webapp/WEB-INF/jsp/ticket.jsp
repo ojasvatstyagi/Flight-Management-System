@@ -10,7 +10,7 @@
 <style>
     body {
         font-family: Arial, sans-serif;
-        background: url('/images/flights.png') no-repeat center center fixed;
+        background: url('/images/ticket2.jpg') no-repeat center center fixed;
         background-size: cover;
         margin: 0;
         padding: 0;
@@ -42,7 +42,8 @@
     	text-decoration: none;
         display: block;
         text-align: center;
-        margin-top: 10px;
+        width: fit-content;
+		margin: 10px auto; 
      }
 	 a:hover {
         text-decoration: underline;

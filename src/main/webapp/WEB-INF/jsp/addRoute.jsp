@@ -71,11 +71,22 @@
         .container a {
         color: #007bff;
         text-decoration: none;
+  		width: fit-content;
+		margin: 10px auto;
 	    }
 	     .container a:hover {
 	        text-decoration: underline;
 	    }
     </style>
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            if (message) {
+                alert(message);
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container">

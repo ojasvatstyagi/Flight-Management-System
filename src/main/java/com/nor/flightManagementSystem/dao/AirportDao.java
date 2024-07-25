@@ -12,4 +12,5 @@ public interface AirportDao {
 	public String findAirportCodeByLocation(String sourceAirportCode);
 	public void deleteAirportByCode(String airportCode);
 	public void updateAirport(Airport airport);
+	public boolean checkAirportById(String airportCode);
     }

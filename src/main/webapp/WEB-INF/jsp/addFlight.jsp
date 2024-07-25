@@ -95,6 +95,15 @@
             text-decoration: underline;
         }
     </style>
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            if (message) {
+                alert(message);
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -119,7 +128,7 @@
                 <select id="routeId" name="routeId" class="form-control" required>
                     <option value="" disabled selected>Select Route Code</option>
                     <c:forEach var="route" items="${codeList}">
-                        <option value="${route.routeId}">${route.routeId} => ${route.sourceAirportCode} to ${route.destinationAirportCode}</option>
+                        <option value="${route.routeId}">${route.routeId}  ${route.sourceAirportCode} to ${route.destinationAirportCode}</option>
                     </c:forEach>
                 </select>
             </div>

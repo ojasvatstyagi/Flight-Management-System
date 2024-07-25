@@ -30,6 +30,8 @@
     a {
         color: #007bff;
         text-decoration: none;
+        width: fit-content;
+		margin: 10px auto; 
     }
     a:hover {
         text-decoration: underline;

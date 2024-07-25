@@ -9,7 +9,7 @@
 <style>
         body {
         font-family: Arial, sans-serif;
-        background: url('/images/flights.png') no-repeat center center fixed;
+        background: url('/images/ticket.jpg') no-repeat center center fixed;
         background-size: cover;
         margin: 0;
         padding: 0;
@@ -56,11 +56,15 @@
     .form-group button:hover {
         background-color: #c9302c;
     }
-    a {
-        color: #007bff;
-        text-decoration: none;
-    }
-    a:hover {
+    .container a {
+            color: #007bff;
+        	text-decoration: none;
+            display: block;
+            text-align: center;
+			width: fit-content;
+			margin: 10px auto;            
+        }
+    .container a:hover {
         text-decoration: underline;
     }
 </style>
@@ -143,6 +147,7 @@
         <div class="form-group">
         <button type="submit">Book Flight</button>
         </div>
+        <a href="/index">Back to home</a>
     </form>
 </div>
 </body>

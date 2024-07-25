@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -46,7 +45,6 @@ public class LoginController {
         else if (userType.equalsIgnoreCase("Customer"))
             indexPage = "indexCust";
         
-        username = StringUtils.capitalize(username);
         ModelAndView mv = new ModelAndView(indexPage);
         mv.addObject("username", username); // Add username to the model
         return mv;

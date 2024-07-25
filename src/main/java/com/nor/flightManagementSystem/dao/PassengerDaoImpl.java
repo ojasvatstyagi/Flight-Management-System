@@ -29,4 +29,5 @@ public class PassengerDaoImpl implements PassengerDao {
 	public List<Passenger> findAllPassengers() {
 		return repo.findAll();
 	}
+
 }

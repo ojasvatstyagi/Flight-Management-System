@@ -46,7 +46,8 @@
         	text-decoration: none;
             display: block;
             text-align: center;
-            margin-top: 10px;
+            width: fit-content;
+			margin: 10px auto; 
         }
 	    .container a:hover {
 	        text-decoration: underline;

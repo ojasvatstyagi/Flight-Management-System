@@ -48,4 +48,10 @@ public class AirportDaoImpl implements AirportDao {
 	public void updateAirport(Airport airport) {
 		repository.save(airport);	
 	}
+
+
+	@Override
+	public boolean checkAirportById(String airportCode) {
+		return repository.findById(airportCode).isPresent();
+	}
 }

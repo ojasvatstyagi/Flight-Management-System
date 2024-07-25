@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -10,7 +9,7 @@
         body {
             font-family: Arial, sans-serif;
             background: url('/images/modifyAirport.jpg') no-repeat center center fixed;
-       		background-size: cover;
+            background-size: cover;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
@@ -62,12 +61,22 @@
             text-decoration: none;
             display: block;
             text-align: center;
-            margin-top: 20px;
+            width: fit-content;
+			margin: 10px auto; 
         }
         a:hover {
             text-decoration: underline;
         }
     </style>
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            if (message) {
+                alert(message);
+            }
+        }
+    </script>
 </head>
 <body>
     
@@ -75,20 +84,20 @@
         <h2>Update Airport Details</h2>
         <form action="/updateAirport" method="post">
             <div class="form-group">
-                <label for="airportCode">Enter Airport Code:</label>
+                <label for="airportCode">Enter Airport Code</label>
                 <select id="airportCode" name="airportCode" required>
-	                <option value="" disabled selected>Select Airport</option>
-	                <c:forEach var="airport" items="${airports}">
-	                    <option value="${airport.airportCode}">${airport.airportCode}</option>
-	                </c:forEach>
-	            </select>
+                    <option value="" disabled selected>Select Airport</option>
+                    <c:forEach var="airport" items="${airports}">
+                        <option value="${airport.airportCode}">${airport.airportCode}</option>
+                    </c:forEach>
+                </select>
             </div>
             <div class="form-group">
-                <label for="airportLocation">Enter Airport Location:</label>
+                <label for="airportLocation">Enter Airport Location</label>
                 <input type="text" id="airportLocation" name="airportLocation" required>
             </div>
             <div class="form-group">
-                <label for="details">Enter Airport Details:</label>
+                <label for="details">Enter Airport Details</label>
                 <textarea id="details" name="details" rows="5" required></textarea>
             </div>
             <div class="form-actions">

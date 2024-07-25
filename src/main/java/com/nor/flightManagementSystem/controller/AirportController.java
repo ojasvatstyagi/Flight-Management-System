@@ -41,20 +41,23 @@ public class AirportController {
     public ModelAndView saveAirport(@ModelAttribute("airportDetails") Airport airport) {
         try {
             String airportCode = airport.getAirportCode().toUpperCase();
-            if (airportDao.findAirportById(airportCode) != null) {
+            if (airportDao.checkAirportById(airportCode)) {
                 throw new DuplicateAirportCodeException("Airport with code " + airportCode + " already exists.");
             }
             airport.setAirportCode(airportCode);
             airport.setAirportLocation(airport.getAirportLocation().toUpperCase());
             airport.setDetails(airport.getDetails());
             airportDao.addAirport(airport);
-            return new ModelAndView("redirect:/index");
+            
+            // Redirect to the addAirport JSP with a success message as a query parameter
+            return new ModelAndView("redirect:/addAirport?message=Airport details added successfully");
         } catch (DuplicateAirportCodeException e) {
             throw e;
         } catch (Exception e) {
             throw new DatabaseException("Error saving airport to the database", e);
         }
     }
+
 
     @GetMapping("/viewAirports")
     public ModelAndView showAirportReportPage() {
@@ -106,11 +109,13 @@ public class AirportController {
     public ModelAndView updateAirport(@RequestParam("airportCode") String airportCode,
                                       @RequestParam("airportLocation") String airportLocation,
                                       @RequestParam("details") String details) {
-    	Airport airport = airportDao.findAirportById(airportCode);
-            airport.setAirportLocation(airportLocation.toUpperCase());
-            airport.setDetails(details);
-            airportDao.updateAirport(airport);
-            return new ModelAndView("redirect:/index");
+	    	Airport airport = airportDao.findAirportById(airportCode);
+	        airport.setAirportLocation(airportLocation.toUpperCase());
+	        airport.setDetails(details);
+	        airportDao.updateAirport(airport);
+            
+            // Redirect to the addAirport JSP with a success message as a query parameter
+            return new ModelAndView("redirect:/modifyAirport?message=Airport details updated successfully");
     }
 
     @GetMapping("/about")

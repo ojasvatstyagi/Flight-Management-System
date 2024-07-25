@@ -200,7 +200,29 @@ public class BookingController {
     @PostMapping("/cancelBooking")
     public ModelAndView cancelBooking(@RequestParam("ticketNumber") Long ticketNumber) {
         try {
+            // Fetch the ticket details
+            Ticket ticket = ticketDao.findTicketByTicketNumber(ticketNumber);
+            if (ticket == null) {
+                throw new TicketNotFoundException("Ticket not found");
+            }
+
+            // Fetch the flight details
+            Flight flight = flightDao.findByFlightNumber(ticket.getFlightNumber());
+           
+         // Fetch the count of passengers associated with the ticket
+            int passengerCount = passengerDao.findByTicketNumber(ticketNumber).size();
+            
+            // Update the flight's available seats
+            int newAvailableSeats = flight.getSeatsBooked() - passengerCount;
+            if (newAvailableSeats <= 0) {
+                newAvailableSeats = 0; // Ensure it doesn't exceed capacity
+            }
+            flight.setSeatsBooked(newAvailableSeats);
+            flightDao.addFlight(flight);
+
+            // Delete the ticket
             ticketDao.deleteByTicketNumber(ticketNumber);
+
             return new ModelAndView("redirect:/index");
         } catch (TicketNotFoundException e) {
             throw e;
@@ -208,6 +230,7 @@ public class BookingController {
             throw new DatabaseException("Error cancelling booking", e);
         }
     }
+
 
 
     @GetMapping("/viewTickets")

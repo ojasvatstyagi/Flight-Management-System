@@ -11,4 +11,5 @@ public interface FlightDao {
 	public void updateFlight(Flight flight);
 	public List<Flight> findFlightsByRouteId(Long routeId);
 	public void deleteFlightByFlightNumber(Long flightNumber);
+	public Flight findByFlightNumber(Long flightNumber);
 }

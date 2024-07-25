@@ -10,7 +10,7 @@ public class FlightManagementSystemApplication {
     }
 }
 
- 
+
 //mysql -u root -p     
 //ojas123@mysql
 //use airlinedb; 

@@ -64,12 +64,22 @@
             text-decoration: none;
             display: block;
             text-align: center;
-            margin-top: 20px;
+            width: fit-content;
+			margin: 10px auto; 
         }
         a:hover {
             text-decoration: underline;
         }
     </style>
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            if (message) {
+                alert(message);
+            }
+        }
+    </script>
 </head>
 <body>
     
@@ -78,10 +88,10 @@
         <form action="/updateRoute" method="post">
             <div class="form-group">
                 <label for="routeId">Enter Route Code:</label>
-                <select id="routeId" name="routeId"  required>
+                <select id="routeId" name="routeId" class="form-control" required>
                     <option value="" disabled selected>Select Route Code</option>
                     <c:forEach var="route" items="${routes}">
-                        <option value="${route.routeId}">${route.routeId}</option>
+                        <option value="${route.routeId}">${route.routeId} ${route.sourceAirportCode} to ${route.destinationAirportCode}</option>
                     </c:forEach>
                 </select>
             </div>

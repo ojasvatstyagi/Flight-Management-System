@@ -63,24 +63,34 @@
         	text-decoration: none;
             display: block;
             text-align: center;
-            margin-top: 10px;
+			width: fit-content;
+			margin: 10px auto;            
         }
 	    .container a:hover {
 	        text-decoration: underline;
 	    }
     </style>
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            if (message) {
+                alert(message);
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h2>Add Airport</h2>
         <form action="/addAirport" method="post">
-            <label for="airportCode">Airport Code:</label>
-            <input type="text" id="airportCode" name="airportCode" required>
+            <label for="airportCode">Airport Code</label>
+            <input type="text" id="airportCode" name="airportCode" placeholder="xxx" required>
 
-            <label for="airportLocation">Airport Location:</label>
+            <label for="airportLocation">Airport Location</label>
             <input type="text" id="airportLocation" name="airportLocation" required>
             
-            <label for="details">About Airport:</label>
+            <label for="details">About Airport</label>
             <textarea id="details" name="details" rows="5" required></textarea>
 
             <button type="submit">Submit</button>

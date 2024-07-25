@@ -52,7 +52,7 @@ public class FlightController {
         Flight returnFlight = flightService.createReturnFlight(flight, returnDeparture, returnArrival);
     	flightDao.addFlight(flight);
     	flightDao.addFlight(returnFlight);
-        return new ModelAndView("redirect:/index");
+        return new ModelAndView("redirect:/addFlight?message=Flight details added successfully");
     	} catch (DuplicateFlightNumberException e) {
             throw e;
         } catch (Exception e) {
@@ -96,7 +96,7 @@ public class FlightController {
                                @RequestParam("seatCapacity") Integer seatCapacity) {
 	        Flight newFlight = new Flight(flightNumber, flightName, routeId, seatCapacity, departure, arrival);
 	        flightDao.updateFlight(newFlight);
-            return new ModelAndView("redirect:/index");
+	        return new ModelAndView("redirect:/modifyFlight?message=Flight details updated successfully");
     }
 
      

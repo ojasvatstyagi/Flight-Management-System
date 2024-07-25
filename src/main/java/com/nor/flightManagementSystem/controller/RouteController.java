@@ -38,7 +38,7 @@ public class RouteController {
             List<Airport> airports = airportDao.findAllAirports();
             Route route = new Route();
             route.setRouteId(newRouteId);
-            ModelAndView mv = new ModelAndView("routeEntryPage");
+            ModelAndView mv = new ModelAndView("addRoute");
             mv.addObject("routeRecord", route);
             mv.addObject("codeList", airports);
             return mv;
@@ -53,7 +53,7 @@ public class RouteController {
             Route returnRoute = routeService.createReturnRoute(route);
             routeDao.save(route);
             routeDao.save(returnRoute);
-            return new ModelAndView("redirect:/index");
+            return new ModelAndView("redirect:/route?message=Route details added successfully");
         } catch (Exception e) {
             throw new DatabaseException("Error saving route", e);
         }
@@ -101,7 +101,7 @@ public class RouteController {
             route.setDestinationAirportCode(destinationAirportCode);
             route.setPrice(price);
             routeDao.updateRoute(route);
-            return new ModelAndView("redirect:/index");
+            return new ModelAndView("redirect:/modifyRoute?message=Route details updated successfully");
         } catch (RouteNotFoundException e) {
             throw e;
         } catch (Exception e) {

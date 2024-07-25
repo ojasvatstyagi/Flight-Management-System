@@ -59,7 +59,8 @@
         color: #007bff;
         text-decoration: none;
         display: block;
-        margin-top: 10px;
+        width: fit-content;
+		margin: 10px auto; 
     }
     .container a:hover {
         text-decoration: underline;

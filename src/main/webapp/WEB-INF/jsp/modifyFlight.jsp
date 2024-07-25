@@ -67,12 +67,22 @@
             text-decoration: none;
             display: block;
             text-align: center;
-            margin-top: 20px;
+            width: fit-content;
+			margin: 10px auto; 
         }
         a:hover {
             text-decoration: underline;
         }
     </style>
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+            if (message) {
+                alert(message);
+            }
+        }
+    </script>
 </head>
 <body>
     

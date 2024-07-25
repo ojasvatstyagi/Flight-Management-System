@@ -48,4 +48,9 @@ public class FlightDaoImpl implements FlightDao{
 		flightRepository.deleteById(flightNumber);
 	}
 
+	@Override
+	public Flight findByFlightNumber(Long flightNumber) {
+		return flightRepository.findById(flightNumber).get();
+	}
+
 }
