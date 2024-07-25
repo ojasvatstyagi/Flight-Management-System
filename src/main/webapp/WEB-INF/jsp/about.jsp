@@ -132,7 +132,6 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage">BETA</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -183,9 +182,9 @@
   <div class="row text-center" style="display: flex; justify-content: center;">
     <div class="col-sm-4">
       <div class="thumbnail">
-        <img src="/images/profile.png" alt="Profile" width="400" height="300">
-        <p><strong>Ojas Tyagi</strong></p>
-        <p>Aspiring Java Developer</p>
+        <img src="/images/profile2.png" alt="Profile" width="400" height="300">
+        <p><strong>info Flight</strong></p>
+        <p>Aspiring Java Developers</p>
       </div>
     </div>
   </div>

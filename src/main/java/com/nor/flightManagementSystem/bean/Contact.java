@@ -2,6 +2,7 @@ package com.nor.flightManagementSystem.bean;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class Contact {
@@ -9,6 +10,7 @@ public class Contact {
     @Id
     private String name;
     private String email;
+	@Lob
     private String comment;
     
 	public String getName() {

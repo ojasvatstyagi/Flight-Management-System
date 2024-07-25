@@ -86,12 +86,7 @@ public class FlightController {
         }
     }
     
-    @PostMapping("/deleteFlight")
-    public ModelAndView deleteAirport(@RequestParam("flightNumber") Long flightNumber) {
-	    	flightDao.deleteFlightByFlightNumber(flightNumber);
-            return new ModelAndView("redirect:/index");
-    }
-    
+
     @PostMapping("/updateFlight")
     public ModelAndView updateFlight(@RequestParam("flightNumber") Long flightNumber,
                                @RequestParam("flightName") String flightName,

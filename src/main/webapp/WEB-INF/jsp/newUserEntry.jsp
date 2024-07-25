@@ -72,6 +72,15 @@
     a:hover {
         text-decoration: underline;
     }
+    
+    img {
+      width: 30px;
+      height: 30px; 
+      position: absolute; 
+      right: 10px; top: 40%; 
+      transform: translateY(-50%); 
+      cursor: pointer;
+    }
 </style>
 <script type="text/javascript">
     function validatePassword() {
@@ -90,9 +99,20 @@
         }
 
         error.textContent = "";
-        document.getElementById("registrationForm").submit();
         return true;
     }
+
+    function togglePasswordVisibility(id, img) {
+    var passwordInput = document.getElementById(id);
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        img.src = "/images/eyes2.png"; // Change to the hide image
+    } else {
+        passwordInput.type = "password";
+        img.src = "/images/eyes.png"; // Change to the show image
+    }
+}
+
 </script>
 </head>
 <body>
@@ -100,26 +120,35 @@
         <h3>Flight Reservation System - Sign Up</h3>
         <div id="error" class="error">${error}</div> <!-- Display error message -->
         <form:form id="registrationForm" action="/register" method="post" modelAttribute="userRecord" onsubmit="return validatePassword()">
-            <form:label path="username">Enter New User Id:</form:label>
+            <form:label path="username">Enter New UserName</form:label>
             <form:input path="username" />
             <br/>
-            <form:label path="email">Enter Email:</form:label>
+            <form:label path="email">Enter Email</form:label>
             <form:input type="email" path="email" />
             <br/>
-            <form:label for ="type" path="type">Select User's Type:</form:label>
-            <select id = "type" name="type" required>
+            <form:label for ="type" path="type">Select User's Type</form:label>
+            <select id="type" name="type" required>
                 <option value="Customer">Customer</option>
                 <option value="Admin">Admin</option>
             </select>
             <br/>
-            <form:label path="password">Enter New Password:</form:label>
-            <form:input type="password" id="pass1" path="password" />
+            <form:label path="password">Enter New Password</form:label>
+            <div style="position: relative;">
+            <form:input type="password" id="pass1" path="password" style="padding-right: 40px;" />
+            <img src="/images/eyes.png" alt="Show Password" onclick="togglePasswordVisibility('pass1', this)">
+            </div>
             <br/>
-            <label for="pass2">Re-type New Password:</label>
-            <input type="password" id="pass2" />
+            <label for="pass2">Rewrite New Password</label>
+            <div style="position: relative;">
+            <input type="password" id="pass2" style="padding-right: 40px;" />
+            <img src="/images/eyes.png" alt="Show Password" onclick="togglePasswordVisibility('pass2', this)">
+            </div>
+
             <br/>
+            <div style="display: flex; justify-content: space-evenly;">
             <button type="submit">Submit</button>
             <button type="reset">Reset</button>
+            </div>
             <br/>
         </form:form>
         <a href="/loginpage">Already have an account?</a>

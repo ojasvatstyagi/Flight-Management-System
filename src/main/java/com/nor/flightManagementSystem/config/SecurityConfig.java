@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception{
 	http.authorizeHttpRequests()
-			.antMatchers("/register", "/images/**", "/fms")
+			.antMatchers("/register", "/images/**", "/fms","/about")
 			.permitAll()
 			.anyRequest()
 			.authenticated()
@@ -42,6 +42,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.logout()
 			.logoutSuccessUrl("/index");
 			http.csrf().disable();		
-	}
-	
+	}	
 }

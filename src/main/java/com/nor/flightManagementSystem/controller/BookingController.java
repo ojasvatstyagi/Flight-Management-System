@@ -1,8 +1,12 @@
 package com.nor.flightManagementSystem.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -121,6 +125,8 @@ public class BookingController {
                 throw new IncompletePassengerDetailsException("Passenger details are incomplete.");
             }
 
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String username = authentication.getName();
             Long ticketNumber = ticketDao.findLastTicketNumber();
 
             Ticket ticket = new Ticket();
@@ -128,6 +134,7 @@ public class BookingController {
             ticket.setRouteId(routeId);
             ticket.setFlightNumber(flightNumber);
             ticket.setFlightName(flightName);
+            ticket.setUsername(username);
             double totalAmount = 0.0;
             int passengersCount = passengerNames.size();
 
@@ -169,19 +176,26 @@ public class BookingController {
     }
 
     @GetMapping("/viewBooking")
-    public ModelAndView showBookingForm() {
-        return new ModelAndView("viewTicket");
+    public ModelAndView viewBookings() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        List<Ticket> tickets = ticketDao.findTicketsByUsername(username);
+
+        // Create a map to hold passenger details for each ticket
+        Map<Long, List<Passenger>> passengerDetails = new HashMap<>();
+
+     // Fetch passenger details for each ticket
+        for (Ticket ticket : tickets) {
+            List<Passenger> passengers = passengerDao.findByTicketNumber(ticket.getTicketNumber());
+            passengerDetails.put(ticket.getTicketNumber(), passengers);
+        }
+        
+        ModelAndView mv = new ModelAndView("viewTicket");
+        mv.addObject("tickets", tickets);
+        mv.addObject("passengerDetails", passengerDetails);
+        return mv;
     }
 
-    @PostMapping("/viewBooking")
-    public ModelAndView viewBooking(@RequestParam("ticketNumber") Long ticketNumber) {
-    	Ticket ticket = ticketDao.findTicketByTicketNumber(ticketNumber);
-        
-            ModelAndView mv = new ModelAndView("viewTicket");
-            mv.addObject("ticket", ticket);
-            mv.addObject("passengers", passengerDao.findByTicketNumber(ticketNumber));
-            return mv;
-    }
 
     @PostMapping("/cancelBooking")
     public ModelAndView cancelBooking(@RequestParam("ticketNumber") Long ticketNumber) {
@@ -238,7 +252,7 @@ public class BookingController {
 
     @ExceptionHandler(IncompletePassengerDetailsException.class)
     public ModelAndView handleIncompletePassengerDetailsException(IncompletePassengerDetailsException e) {
-        ModelAndView mv = new ModelAndView("errorpage");
+        ModelAndView mv = new ModelAndView("errorPage");
         mv.addObject("error", e.getMessage());
         return mv;
     }

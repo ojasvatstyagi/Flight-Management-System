@@ -10,4 +10,5 @@ public interface TicketDao {
 	public Ticket findTicketByTicketNumber(Long ticketNumber);
 	public void deleteByTicketNumber(Long ticketNumber);
 	public List<Ticket> findAllTickets();
+	public List<Ticket> findTicketsByUsername(String username);
 }

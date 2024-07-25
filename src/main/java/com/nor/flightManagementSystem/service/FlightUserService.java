@@ -36,8 +36,9 @@ public class FlightUserService implements UserDetailsService {
     }
     
     public boolean userExists(String username) {
-        return repository.findByUsername(username) != null;
+        return repository.findByUsername(username).isPresent();
     }
+
 
 	public String getTypeByUsername(String username) {
 		FlightUser user = repository.findByUsername(username).get();

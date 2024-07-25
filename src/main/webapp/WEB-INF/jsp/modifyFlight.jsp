@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Delete Flight and Update Flight</title>
+    <title>Update Flight</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -75,23 +75,6 @@
     </style>
 </head>
 <body>
-	<div class="container">
-        <h1>Delete Flight</h1>
-        <form action="/deleteFlight" method="post">
-            <div class="form-group">
-	            <label for="flightNumber">Enter Flight Id:</label>
-	            <select id="flightNumber" name="flightNumber" required>
-	                <option value="" disabled selected>Select Flight</option>
-	                <c:forEach var="flight" items="${flights}">
-	                    <option value="${flight.flightNumber}">${flight.flightNumber} -> ${flight.flightName}</option>
-	                </c:forEach>
-	            </select>
-        	</div>
-            <div class="form-actions">
-                <button type="submit">Delete Flight</button>
-            </div>
-        </form>
-    </div>
     
     <div class="container">
         <h2>Update Flight Details</h2>

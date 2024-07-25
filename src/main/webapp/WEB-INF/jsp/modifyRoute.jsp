@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Delete Route and Update Route</title>
+    <title>Update Route</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -39,7 +39,7 @@
             color: rgb(25, 40, 89);
             font-size: 20px;
         }
-        .form-group input select {
+        .form-group input, select {
             width: 100%;
             padding: 8px;
             box-sizing: border-box;
@@ -72,31 +72,24 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Delete Route</h1>
-        <form action="/deleteRoute" method="post">
-            <div class="form-group">
-                <label for="routeId">Enter Route Code:</label>
-                <input type="text" id="routeId" name="routeId" required>
-            </div>
-            <div class="form-actions">
-                <button type="submit">Delete Route</button>
-            </div>
-        </form>
-    </div>
     
     <div class="container">
         <h2>Update Route Details</h2>
         <form action="/updateRoute" method="post">
             <div class="form-group">
                 <label for="routeId">Enter Route Code:</label>
-                <input type="text" id="routeId" name="routeId" required>
+                <select id="routeId" name="routeId"  required>
+                    <option value="" disabled selected>Select Route Code</option>
+                    <c:forEach var="route" items="${routes}">
+                        <option value="${route.routeId}">${route.routeId}</option>
+                    </c:forEach>
+                </select>
             </div>
             <div class="form-group">
             	<label for="sourceAirportCode">Select Source Airport Code:</label>
                 <select id="sourceAirportCode" name="sourceAirportCode"  required>
                     <option value="" disabled selected>Select Airport Code</option>
-                    <c:forEach var="airport" items="${codeList}">
+                    <c:forEach var="airport" items="${airports}">
                         <option value="${airport.airportCode}">${airport.airportCode}</option>
                     </c:forEach>
                 </select>
@@ -105,7 +98,7 @@
                 <label for="destinationAirportCode">Select Destination Airport Code:</label>
                 <select id="destinationAirportCode" name="destinationAirportCode" required>
                     <option value="" disabled selected>Select Airport Code</option>
-                    <c:forEach var="airport" items="${codeList}">
+                    <c:forEach var="airport" items="${airports}">
                         <option value="${airport.airportCode}">${airport.airportCode}</option>
                     </c:forEach>
                 </select>

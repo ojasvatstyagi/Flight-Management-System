@@ -75,29 +75,16 @@ public class RouteController {
     public ModelAndView deleteRoute() {
         try {
             List<Route> routes = routeDao.findAllRoutes();
+            List<Airport> airports = airportDao.findAllAirports();
             ModelAndView mv = new ModelAndView("modifyRoute");
             mv.addObject("routes", routes);
+            mv.addObject("airports", airports);
             return mv;
         } catch (Exception e) {
             throw new DatabaseException("Error retrieving routes from the database", e);
         }
     }
 
-    @PostMapping("/deleteRoute")
-    public ModelAndView deleteRoute(@RequestParam("routeId") Long routeId) {
-        try {
-            Route route = routeDao.findRouteById(routeId);
-            if (route == null) {
-                throw new RouteNotFoundException("Route with code " + routeId + " not found.");
-            }
-            routeDao.deleteRouteById(routeId);
-            return new ModelAndView("redirect:/index");
-        } catch (RouteNotFoundException e) {
-            throw e;
-        } catch (Exception e) {
-            throw new DatabaseException("Error deleting route from the database", e);
-        }
-    }
 
     @PostMapping("/updateRoute")
     public ModelAndView updateAirport(@RequestParam("routeId") Long routeId,

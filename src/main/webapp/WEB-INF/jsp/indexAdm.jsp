@@ -14,6 +14,7 @@
         background-color: #f4f4f4;
     }
     .header {
+        padding: 20px;
         background-color: rgb(17, 23, 43);
         color: white;
         text-align: center;
@@ -24,7 +25,6 @@
         width: 100%;
         top: 0;
         z-index: 1000;
-        border: 4px solid rgb(25, 40, 89);
     }
     .header img {
         height: 65px;
@@ -42,18 +42,17 @@
         font-size: 3em;
     }
     .header .user {
-    	padding: 10px;
+    	font-family: Tahoma,Verdana, sans-serif;
         margin-right: 30px;
-        font-size: 30px;
+        font-size: 25px;
     }
     .nav {
-        background-color: rgb(17, 23, 43);
+        background-color: rgba(17, 23, 43, 0.930);
         color: white;
         width: 200px;
         height: 100vh;
         position: fixed;
-        padding-top: 60px;
-        border: 4px solid rgb(25, 40, 89);
+        padding-top: 100px;
     }
     .nav h2 {
         text-align: center;
@@ -102,7 +101,7 @@
         margin-left: 200px;
         padding: 120px 20px 20px 20px;
         height: 81vh;
-        background-image: url('/images/index.jpg');
+        background-image: url('/images/index.png');
         background-size: cover;
     }
 </style>
@@ -118,6 +117,7 @@
 
 <div class="nav">
     <h2>DashBoard</h2>
+    <br>
     <div class="dropdown">
         <a href="javascript:void(0)" class="dropdown-btn">Airports</a>
         <div class="dropdown-content">
@@ -138,8 +138,8 @@
         <a href="javascript:void(0)" class="dropdown-btn">Routes</a>
         <div class="dropdown-content">
             <a href="/route">Add New Route</a>
-            <a href="/modifyRoute">Modify Route Details</a>
             <a href="/viewRoutes">View Routes</a>
+            <a href="/modifyRoute">Modify Route Details</a>
         </div>
     </div>
     <div class="dropdown">
@@ -147,6 +147,8 @@
         <div class="dropdown-content">
             <a href="/viewTickets">View Tickets</a>
             <a href="/viewPassengers">View Passengers</a>
+            <a href="/searchFlight">Book Flight</a>
+    		<a href="/viewBooking">View Bookings</a>
         </div>
     </div>
     <a href="/about">About Us</a>

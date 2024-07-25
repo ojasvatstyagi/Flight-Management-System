@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Delete Airport and Update Airport</title>
+    <title>Update Airport</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -37,7 +37,7 @@
             color: rgb(25, 40, 89);
             font-size: 20px;
         }
-        .form-group input, select {
+        .form-group input, select, textarea {
             width: 100%;
             padding: 8px;
             box-sizing: border-box;
@@ -70,23 +70,6 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Delete Airport</h1>
-        <form action="/deleteAirport" method="post">
-            <div class="form-group">
-	            <label for="airportCode">Enter Airport Code:</label>
-	            <select id="airportCode" name="airportCode" required>
-	                <option value="" disabled selected>Select Airport</option>
-	                <c:forEach var="airport" items="${airports}">
-	                    <option value="${airport.airportCode}">${airport.airportCode}</option>
-	                </c:forEach>
-	            </select>
-        	</div>
-            <div class="form-actions">
-                <button type="submit">Delete Airport</button>
-            </div>
-        </form>
-    </div>
     
     <div class="container">
         <h2>Update Airport Details</h2>

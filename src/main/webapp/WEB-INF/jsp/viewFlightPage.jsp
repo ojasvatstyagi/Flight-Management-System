@@ -65,6 +65,7 @@
                     <th>Flight Seat Capacity</th>
                     <th>Flight Arrival Time</th>
                     <th>Route Departure Time</th>
+                    <th>Available Seats</th>
                 </tr>
             </thead>
             <tbody>
@@ -76,6 +77,7 @@
                         <td>${flight.seatCapacity}</td>
                         <td>${flight.arrival}</td>
                         <td>${flight.departure}</td>
+                        <td>${flight.seatCapacity - flight.seatsBooked} </td>
                     </tr>
                 </c:forEach>
             </tbody>

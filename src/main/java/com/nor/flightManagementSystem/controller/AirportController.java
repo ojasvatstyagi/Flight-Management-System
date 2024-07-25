@@ -101,11 +101,6 @@ public class AirportController {
         }
     }
 
-    @PostMapping("/deleteAirport")
-    public ModelAndView deleteAirport(@RequestParam("airportCode") String airportCode) {
-            airportDao.deleteAirportByCode(airportCode);
-            return new ModelAndView("redirect:/index");
-    }
 
     @PostMapping("/updateAirport")
     public ModelAndView updateAirport(@RequestParam("airportCode") String airportCode,

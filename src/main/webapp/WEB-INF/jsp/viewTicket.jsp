@@ -24,24 +24,13 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         text-align: center;
     }
-    .form-group {
-        margin-bottom: 15px;
-    }
-    .form-group label {
-        font-size: 20px;
-        display: block;
-        margin-bottom: 5px;
-        color: #000;
-    }
-    .form-group input {
-        width: 50%;
+    .ticket-details, .passenger-details {
+        margin-bottom: 20px;
         padding: 10px;
-        font-size: 14px;
-        border: 1px solid rgb(17 23 43);
+        border: 1px solid #ccc;
         border-radius: 5px;
-        box-sizing: border-box;
     }
-    .container button {
+     .container button {
         background-color: #4CAF50;
         color: white;
         padding: 10px 15px;
@@ -68,36 +57,31 @@
 </head>
 <body>
     <div class="container">
-        <h1>Ticket Invoice</h1>
-        <form action="/viewBooking" method="post">
-            <div class="form-group">
-                <label for="ticketNumber">Ticket Number:</label>
-                <input type="text" id="ticketNumber" name="ticketNumber" required>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
-        <c:if test="${not empty ticket}">
-            <div class="container">
-                <h2>Ticket Details</h2>
-                <label>Ticket Number: ${ticket.ticketNumber}</label><br>
-                <label>Route ID: ${ticket.routeId}</label><br>
-                <label>Flight Number: ${ticket.flightNumber}</label><br>
-                <label>Flight Name: ${ticket.flightName}</label><br>
-                <label>Total Amount: ${ticket.totalAmount}</label>
-                <h2>Passengers</h2>
-                <c:forEach var="passenger" items="${passengers}">
-                    <div class="passenger-details">
-                        <label>Passenger Name: ${passenger.passengerName}</label><br>
-                        <label>Passenger Date of Birth: ${passenger.passengerDob}</label><br>
-                        <label>Individual Price: ${passenger.price}</label><br>
-                    </div>
-                </c:forEach>
-                <form action="/cancelBooking" method="post">
-                    <input type="hidden" name="ticketNumber" value="${ticket.ticketNumber}">
-                    <button type="submit">Cancel Booking</button>
-                    <p style="color: gray"><strong>*</strong> 10% will be deducted as cancellation fee</p>
-                </form>
-            </div>
+        <h1>My Bookings</h1>
+        <c:if test="${not empty tickets}">
+            <c:forEach var="ticket" items="${tickets}">
+                <div class="ticket-details">
+                    <h2>Ticket Details</h2>
+                    <label>Ticket Number: ${ticket.ticketNumber}</label><br>
+                    <label>Route ID: ${ticket.routeId}</label><br>
+                    <label>Flight Number: ${ticket.flightNumber}</label><br>
+                    <label>Flight Name: ${ticket.flightName}</label><br>
+                    <label>Total Amount: ${ticket.totalAmount}</label>
+                    <h2>Passengers</h2>
+                    <c:forEach var="passenger" items="${passengerDetails[ticket.ticketNumber]}">
+                        <div class="passenger-details">
+                            <label>Passenger Name: ${passenger.passengerName}</label><br>
+                            <label>Passenger Date of Birth: ${passenger.passengerDob}</label><br>
+                            <label>Individual Price: ${passenger.price}</label><br>
+                        </div>
+                    </c:forEach>
+                    <form action="/cancelBooking" method="post">
+                        <input type="hidden" name="ticketNumber" value="${ticket.ticketNumber}">
+                        <button type="submit">Cancel Booking</button>
+                        <p style="color: gray"><strong>*</strong> 10% will be deducted as cancellation fee</p>
+                    </form>
+                </div>
+            </c:forEach>
         </c:if>
         <a href="/index">Back to home</a>
     </div>

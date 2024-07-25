@@ -24,7 +24,7 @@
         width: 100%;
         top: 0;
         z-index: 1000;
-        border: 4px solid rgb(25, 40, 89);
+        padding: 20px;
     }
     .header img {
         height: 65px;
@@ -42,17 +42,17 @@
         font-size: 3em;
     }
     .header .user {
+        font-family: Tahoma,Verdana, sans-serif;
         margin-right: 30px;
-        font-size: 30px;
+        font-size: 25px;
     }
     .nav {
-        background-color: rgb(17 23 43);
+        background-color: rgba(17, 23, 43, 0.930);
         color: white;
         width: 200px;
         height: 100vh;
         position: fixed;
-        padding-top: 60px;
-        border: 4px solid rgb(25, 40, 89);
+        padding-top: 100px;
     }
     .nav h2 {
         text-align: center;
@@ -73,7 +73,7 @@
         margin-left: 200px;
         padding: 120px 20px 20px 20px; /* Padding adjusted for fixed header */
         height: 81vh;
-        background-image: url('/images/index.jpg');
+        background-image: url('/images/index.png');
         background-size: cover;
     }
 </style>
@@ -89,6 +89,7 @@
 
 <div class="nav">
     <h2>DashBoard</h2>
+    <br>
     <a href="/viewAirports">View All Airports</a>
     <a href="/viewFlights">View Flight Details</a>
     <a href="/viewRoutes">View Routes</a>

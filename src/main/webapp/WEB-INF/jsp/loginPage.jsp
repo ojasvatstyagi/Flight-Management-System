@@ -32,14 +32,14 @@
         margin-bottom: 20px;
     }
     label {
-        font-size: 18px;
-        margin-bottom: 5px;
         display: block;
+        margin: 10px 0 5px;
+        font-size: 16px;
     }
-    input[type="text"], input[type="password"] {
-        width: 80%;
+    input {
+        width: 100%;
         padding: 10px;
-        margin: 10px 0;
+        margin-bottom: 10px;
         border: 1px solid #ccc;
         border-radius: 5px;
         box-sizing: border-box;
@@ -72,7 +72,27 @@
     a:hover {
         text-decoration: underline;
     }
+    img {
+      width: 30px;
+      height: 30px; 
+      position: absolute; 
+      right: 10px; top: 40%; 
+      transform: translateY(-50%); 
+      cursor: pointer;
+    }
 </style>
+<script>
+	function togglePasswordVisibility(id, img) {
+	    var passwordInput = document.getElementById(id);
+	    if (passwordInput.type === "password") {
+	        passwordInput.type = "text";
+	        img.src = "/images/eyes2.png"; // Change to the hide image
+	    } else {
+	        passwordInput.type = "password";
+	        img.src = "/images/eyes.png"; // Change to the show image
+	    }
+	}
+</script>
 </head>
 <body>
 <div class="container">
@@ -85,14 +105,16 @@
         <input type="text" id="username" name="username" required>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-
+        <div style="position: relative;">
+        <input type="password" id="password" name="password" style="padding-right: 40px;">
+        <img src="/images/eyes.png" alt="Show Password" onclick="togglePasswordVisibility('password', this)">
+        </div>
         <button type="submit">Login</button>
         <br/>
     </form:form>
     <a href="/register">Create New Account</a>
 
-    <footer>Flight Reservation System 2024 | <a href="aboutUs.jsp">About Us</a></footer>
+    <footer>Flight Reservation System 2024 | <a href="/about">About Us</a></footer>
 </div>
 </body>
 </html>

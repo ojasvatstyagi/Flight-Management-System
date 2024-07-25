@@ -11,7 +11,7 @@ public class TicketService {
         int age = calculateAge(dob);
         if (age > 60) {
             return basePrice * 0.7;
-        } else if (age < 14) {
+        } else if (age < 16) {
             return basePrice * 0.5;
         }
         return basePrice;

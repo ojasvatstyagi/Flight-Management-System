@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.nor.flightManagementSystem.bean.FlightUser;
 import com.nor.flightManagementSystem.exception.DatabaseException;
 import com.nor.flightManagementSystem.exception.UserAlreadyExistsException;
 import com.nor.flightManagementSystem.service.FlightUserService;
 
-@ControllerAdvice
 @RestController
 public class LoginController {
 
@@ -46,6 +46,7 @@ public class LoginController {
         else if (userType.equalsIgnoreCase("Customer"))
             indexPage = "indexCust";
         
+        username = StringUtils.capitalize(username);
         ModelAndView mv = new ModelAndView(indexPage);
         mv.addObject("username", username); // Add username to the model
         return mv;
@@ -62,22 +63,24 @@ public class LoginController {
 
     @PostMapping("/register")
     public ModelAndView saveUserRegistrationPage(@ModelAttribute("userRecord") FlightUser user) {
+
         if (service.userExists(user.getUsername())) {
             throw new UserAlreadyExistsException("Username already exists. Please choose a different username.");
         }
-        
         try {
-            String encodedPassword = bCrypt.encode(user.getPassword());
+            String encodedPassword = bCrypt.encode(user.getPassword()); // encrypts the password
             FlightUser newUser = new FlightUser();
             newUser.setUsername(user.getUsername());
             newUser.setPassword(encodedPassword);
             newUser.setType(user.getType());
+            newUser.setEmail(user.getEmail());
             service.save(newUser);
             return new ModelAndView("loginPage");
         } catch (Exception e) {
             throw new DatabaseException("Error saving user to the database", e);
         }
     }
+
 
     @GetMapping("/loginpage")
     public ModelAndView showLoginPage(@RequestParam(value = "error", required = false) String error) {
