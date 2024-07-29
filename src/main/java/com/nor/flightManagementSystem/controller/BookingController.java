@@ -64,8 +64,8 @@ public class BookingController {
     }
 
     @PostMapping("/searchFlight")
-    public ModelAndView searchFlights(@RequestParam("sourceAirport") String sourceAirport,
-                                      @RequestParam("destinationAirport") String destinationAirport) {
+    public ModelAndView searchFlights(@RequestParam String sourceAirport,
+                                      @RequestParam String destinationAirport) {
         try {
             String fromAirport = airportDao.findAirportCodeByLocation(sourceAirport);
             String toAirport = airportDao.findAirportCodeByLocation(destinationAirport);
@@ -113,10 +113,10 @@ public class BookingController {
     }
 
     @PostMapping("/bookFlight")
-    public ModelAndView bookFlight(@RequestParam("routeId") Long routeId,
-                                   @RequestParam("flightNumber") Long flightNumber,
-                                   @RequestParam("flightName") String flightName,
-                                   @RequestParam("price") Double price,
+    public ModelAndView bookFlight(@RequestParam Long routeId,
+                                   @RequestParam Long flightNumber,
+                                   @RequestParam String flightName,
+                                   @RequestParam Double price,
                                    @RequestParam("passengerName") List<String> passengerNames,
                                    @RequestParam("passengerDob") List<String> passengerDobs) {
 
@@ -198,7 +198,7 @@ public class BookingController {
 
 
     @PostMapping("/cancelBooking")
-    public ModelAndView cancelBooking(@RequestParam("ticketNumber") Long ticketNumber) {
+    public ModelAndView cancelBooking(@RequestParam Long ticketNumber) {
         try {
             // Fetch the ticket details
             Ticket ticket = ticketDao.findTicketByTicketNumber(ticketNumber);

@@ -25,6 +25,7 @@
         text-align: center;
     }
     .ticket-details, .passenger-details {
+        font-size: 20px;
         margin-bottom: 20px;
         padding: 10px;
         border: 1px solid #ccc;

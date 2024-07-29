@@ -14,7 +14,6 @@
         background-size: cover;
         margin: 0;
         padding: 0;
-        color: rgb(25, 40, 89);
     }
     .container {
         width: 70%;
@@ -23,19 +22,29 @@
         background-color: #fff;
         padding: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        text-align: center;
+        
     }
-    h1 {
+    h1,h2 {
         color: rgb(25, 40, 89);
+        text-align: center;
     }
     .ticket-details {
         margin-top: 20px;
         text-align: left;
     }
     .ticket-details label {
-        font-size: 18px;
+        font-size: 20px;
         margin-bottom: 5px;
         display: block;
+        text-align: center;
+    }
+    .passenger-details {
+        margin: 20px 140px;
+        text-align: left;
+        width: 50vw;
+        border-radius: 10px;
+        padding:10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
     a {
         color: #007bff;

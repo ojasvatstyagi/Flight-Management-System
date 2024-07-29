@@ -75,13 +75,13 @@ public class LoginController {
             service.save(newUser);
             return new ModelAndView("loginPage");
         } catch (Exception e) {
-            throw new DatabaseException("Error saving user to the database", e);
+            throw new DatabaseException("Problem saving user to the database", e);
         }
     }
 
 
     @GetMapping("/loginpage")
-    public ModelAndView showLoginPage(@RequestParam(value = "error", required = false) String error) {
+    public ModelAndView showLoginPage(@RequestParam(required = false) String error) {
         ModelAndView mv = new ModelAndView("loginPage");
         if (error != null) {
             mv.addObject("error", "Invalid username or password.");
@@ -101,7 +101,7 @@ public class LoginController {
     @ExceptionHandler(DatabaseException.class)
     public ModelAndView handleDatabaseException(DatabaseException e) {
         ModelAndView mv = new ModelAndView("errorPage");
-        mv.addObject("error", "A database error occurred. Please try again later.");
+        mv.addObject("error", "A database problem occurred. Please try again later.");
         return mv;
     }
 }

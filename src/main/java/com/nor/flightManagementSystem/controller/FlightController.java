@@ -17,7 +17,6 @@ import com.nor.flightManagementSystem.bean.Route;
 import com.nor.flightManagementSystem.dao.FlightDao;
 import com.nor.flightManagementSystem.dao.RouteDao;
 import com.nor.flightManagementSystem.exception.DatabaseException;
-import com.nor.flightManagementSystem.exception.DuplicateFlightNumberException;
 import com.nor.flightManagementSystem.service.FlightService;
 
 @ControllerAdvice
@@ -43,21 +42,11 @@ public class FlightController {
     }
 
 	@PostMapping("/addFlight")
-    public ModelAndView saveFlight(@ModelAttribute("flightRecord") Flight flight, String returnDeparture, String returnArrival) {
-    	try {
-    		Long flightNumber = flight.getFlightNumber();
-            if (flightDao.viewFlight(flightNumber) != null) {
-                throw new DuplicateFlightNumberException("Flight with flightNumber " + flightNumber + " already exists.");
-    	} 
+    public ModelAndView saveFlight(@ModelAttribute("flightRecord") Flight flight, String returnDeparture, String returnArrival) {    	
         Flight returnFlight = flightService.createReturnFlight(flight, returnDeparture, returnArrival);
     	flightDao.addFlight(flight);
     	flightDao.addFlight(returnFlight);
         return new ModelAndView("redirect:/addFlight?message=Flight details added successfully");
-    	} catch (DuplicateFlightNumberException e) {
-            throw e;
-        } catch (Exception e) {
-            throw new DatabaseException("Error saving flight to the database", e);
-        }
     }
     
     @GetMapping("/viewFlights")
@@ -88,25 +77,18 @@ public class FlightController {
     
 
     @PostMapping("/updateFlight")
-    public ModelAndView updateFlight(@RequestParam("flightNumber") Long flightNumber,
-                               @RequestParam("flightName") String flightName,
-                               @RequestParam("arrival") String arrival,
-                               @RequestParam("departure") String departure,
-                               @RequestParam("routeId") Long routeId,
-                               @RequestParam("seatCapacity") Integer seatCapacity) {
+    public ModelAndView updateFlight(@RequestParam Long flightNumber,
+                               @RequestParam String flightName,
+                               @RequestParam String arrival,
+                               @RequestParam String departure,
+                               @RequestParam Long routeId,
+                               @RequestParam Integer seatCapacity) {
 	        Flight newFlight = new Flight(flightNumber, flightName, routeId, seatCapacity, departure, arrival);
 	        flightDao.updateFlight(newFlight);
 	        return new ModelAndView("redirect:/modifyFlight?message=Flight details updated successfully");
     }
 
      
-    @ExceptionHandler(DuplicateFlightNumberException.class)
-    public ModelAndView handleDuplicateFlightNumberException(DuplicateFlightNumberException e) {
-        ModelAndView mv = new ModelAndView("errorPage");
-        mv.addObject("error", e.getMessage());
-        return mv;
-    }
-
     @ExceptionHandler(DatabaseException.class)
     public ModelAndView handleDatabaseException(DatabaseException e) {
         ModelAndView mv = new ModelAndView("errorPage");

@@ -87,10 +87,10 @@ public class RouteController {
 
 
     @PostMapping("/updateRoute")
-    public ModelAndView updateAirport(@RequestParam("routeId") Long routeId,
-                                      @RequestParam("destinationAirportCode") String destinationAirportCode,
-                                      @RequestParam("sourceAirportCode") String sourceAirportCode,
-    								  @RequestParam("price") Double price){
+    public ModelAndView updateAirport(@RequestParam Long routeId,
+                                      @RequestParam String destinationAirportCode,
+                                      @RequestParam String sourceAirportCode,
+    								  @RequestParam Double price){
         try {
         	 Route route = routeDao.findRouteById(routeId);
             if (route == null) {

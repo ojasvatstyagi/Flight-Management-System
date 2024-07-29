@@ -54,7 +54,7 @@ public class AirportController {
         } catch (DuplicateAirportCodeException e) {
             throw e;
         } catch (Exception e) {
-            throw new DatabaseException("Error saving airport to the database", e);
+            throw new DatabaseException("Problem saving airport to the database", e);
         }
     }
 
@@ -67,12 +67,12 @@ public class AirportController {
             mv.addObject("airportList", airportList);
             return mv;
         } catch (Exception e) {
-            throw new DatabaseException("Error retrieving airports from the database", e);
+            throw new DatabaseException("Problem showing airports from the database", e);
         }
     }
 
     @GetMapping("/viewAirports/{id}")
-    public ModelAndView showSingleAirportPage(@PathVariable("id") String id) {
+    public ModelAndView showSingleAirportPage(@PathVariable String id) {
             Airport airport = airportDao.findAirportById(id);
             
             ModelAndView mv = new ModelAndView("checkSingleAirport");
@@ -88,7 +88,7 @@ public class AirportController {
             mv.addObject("codeList", codeList);
             return mv;
         } catch (Exception e) {
-            throw new DatabaseException("Error retrieving airport codes from the database", e);
+            throw new DatabaseException("Problem showing airport codes from the database", e);
         }
     }
 
@@ -100,15 +100,15 @@ public class AirportController {
             mv.addObject("airports", airports);
             return mv;
         } catch (Exception e) {
-            throw new DatabaseException("Error retrieving airports from the database", e);
+            throw new DatabaseException("Problem showing airports from the database", e);
         }
     }
 
 
     @PostMapping("/updateAirport")
-    public ModelAndView updateAirport(@RequestParam("airportCode") String airportCode,
-                                      @RequestParam("airportLocation") String airportLocation,
-                                      @RequestParam("details") String details) {
+    public ModelAndView updateAirport(@RequestParam String airportCode,
+                                      @RequestParam String airportLocation,
+                                      @RequestParam String details) {
 	    	Airport airport = airportDao.findAirportById(airportCode);
 	        airport.setAirportLocation(airportLocation.toUpperCase());
 	        airport.setDetails(details);
@@ -131,7 +131,7 @@ public class AirportController {
             repo.save(contact);
             return new ModelAndView("about");
         } catch (Exception e) {
-            throw new DatabaseException("Error saving contact to the database", e);
+            throw new DatabaseException("Problem saving contact to the database", e);
         }
     }
 
@@ -152,7 +152,7 @@ public class AirportController {
     @ExceptionHandler(Exception.class)
     public ModelAndView handleGeneralException(Exception e) {
         ModelAndView mv = new ModelAndView("errorPage");
-        mv.addObject("error", "An unexpected error occurred. Please try again later.");
+        mv.addObject("error", "An unexpected problem occurred. Please try again later.");
         return mv;
     }
 }
